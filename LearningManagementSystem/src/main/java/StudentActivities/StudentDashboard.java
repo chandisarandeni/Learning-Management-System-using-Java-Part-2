@@ -78,7 +78,7 @@ public class StudentDashboard extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Time Table":
-                StudentViewTimetable studentViewTimetable = new StudentViewTimetable();
+                StudentViewTimetable studentViewTimetable = new StudentViewTimetable(studentID);
                 studentViewTimetable.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {

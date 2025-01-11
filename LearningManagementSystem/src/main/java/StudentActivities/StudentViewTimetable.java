@@ -6,6 +6,7 @@ package StudentActivities;
 
 import CommonClasses.ImageResizer;
 import LoginFrames.Home;
+import StudentActivities.CommonClasses.StudentTimetableLoader;
 import java.awt.Color;
 import java.awt.Font;
 import javaswingdev.drawer.Drawer;
@@ -26,9 +27,9 @@ public class StudentViewTimetable extends javax.swing.JFrame {
     private final DrawerController drawer;
     String studentID;
 
-    public StudentViewTimetable() {
+    public StudentViewTimetable(String studentID) {
         initComponents();
-        
+
         this.studentID = studentID;
         lbl_studentID.setText(studentID);
 
@@ -50,6 +51,9 @@ public class StudentViewTimetable extends javax.swing.JFrame {
                 .space(100)
                 .addChild(createDrawerItem("Logout"))
                 .build();
+
+        StudentTimetableLoader.loadTimetable(lbl_studentID.getText(), tbl_Timetable);
+
     }
 
     private DrawerItem createDrawerItem(String title) {
@@ -78,7 +82,7 @@ public class StudentViewTimetable extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Time Table":
-                StudentViewTimetable studentViewTimetable = new StudentViewTimetable();
+                StudentViewTimetable studentViewTimetable = new StudentViewTimetable(studentID);
                 studentViewTimetable.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -175,11 +179,10 @@ public class StudentViewTimetable extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         lbl_studentID = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_Timetable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btn_Menu.setIcon(new javax.swing.ImageIcon("C:\\Users\\chand\\OneDrive\\Desktop\\GitHub Clones\\Learning-Management-System-using-Java\\LearningManagementSystem\\src\\main\\java\\StudentActivities\\Icons\\MenuColored.png")); // NOI18N
         btn_Menu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_Menu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -195,22 +198,22 @@ public class StudentViewTimetable extends javax.swing.JFrame {
 
         lbl_studentID.setText("StudentID");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_Timetable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Date", "Start Time", "End Time", "Subject", "Lecturer", "Hall"
+                "Date", "Start Time", "End Time", "Subject", "Hall"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -221,42 +224,41 @@ public class StudentViewTimetable extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(25);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(25);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(25);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(130);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setPreferredWidth(130);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setPreferredWidth(25);
+        tbl_Timetable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tbl_Timetable);
+        if (tbl_Timetable.getColumnModel().getColumnCount() > 0) {
+            tbl_Timetable.getColumnModel().getColumn(0).setResizable(false);
+            tbl_Timetable.getColumnModel().getColumn(0).setPreferredWidth(25);
+            tbl_Timetable.getColumnModel().getColumn(1).setResizable(false);
+            tbl_Timetable.getColumnModel().getColumn(1).setPreferredWidth(25);
+            tbl_Timetable.getColumnModel().getColumn(2).setResizable(false);
+            tbl_Timetable.getColumnModel().getColumn(2).setPreferredWidth(25);
+            tbl_Timetable.getColumnModel().getColumn(3).setResizable(false);
+            tbl_Timetable.getColumnModel().getColumn(3).setPreferredWidth(130);
+            tbl_Timetable.getColumnModel().getColumn(4).setResizable(false);
+            tbl_Timetable.getColumnModel().getColumn(4).setPreferredWidth(25);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btn_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(337, 337, 337)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(lbl_studentID)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGap(14, 120, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(80, 80, 80))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 755, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(337, 337, 337)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbl_studentID))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 755, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(41, 41, 41))
         );
         layout.setVerticalGroup(
@@ -264,12 +266,12 @@ public class StudentViewTimetable extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(btn_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lbl_studentID)
+                        .addComponent(jLabel4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(lbl_studentID))
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(30, Short.MAX_VALUE))
@@ -318,7 +320,7 @@ public class StudentViewTimetable extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StudentViewTimetable().setVisible(true);
+                new StudentViewTimetable("").setVisible(true);
             }
         });
     }
@@ -328,7 +330,7 @@ public class StudentViewTimetable extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lbl_studentID;
+    private javax.swing.JTable tbl_Timetable;
     // End of variables declaration//GEN-END:variables
 }

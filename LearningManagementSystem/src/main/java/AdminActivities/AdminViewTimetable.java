@@ -4,6 +4,9 @@
  */
 package AdminActivities;
 
+import AdminActivities.CommonClasses.CourseIDLoader;
+import AdminActivities.CommonClasses.RecentTimetableLoader;
+import AdminActivities.CommonClasses.TimetableSearchByCourse;
 import CommonClasses.ImageResizer;
 import LoginFrames.Home;
 import java.awt.Color;
@@ -13,7 +16,6 @@ import javaswingdev.drawer.DrawerItem;
 import javax.swing.Timer;
 
 /**
- *
  * @author chand
  */
 public class AdminViewTimetable extends javax.swing.JFrame {
@@ -53,6 +55,9 @@ public class AdminViewTimetable extends javax.swing.JFrame {
 
         // Optionally, display the admin username in the dashboard
         lbl_adminUsername.setText(adminUsername);
+        
+        RecentTimetableLoader.loadRecentTimetables(tbl_Timetable);
+        CourseIDLoader.loadCourseIDs(comboBox_courseID);
     }
 
     private DrawerItem createDrawerItem(String title) {
@@ -201,10 +206,10 @@ public class AdminViewTimetable extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btn_Verify = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboBox_courseID = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_Timetable = new javax.swing.JTable();
         btn_Menu = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         lbl_studentID = new javax.swing.JLabel();
@@ -225,13 +230,18 @@ public class AdminViewTimetable extends javax.swing.JFrame {
         btn_Verify.setAlignmentY(0.0F);
         btn_Verify.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_Verify.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_Verify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_VerifyActionPerformed(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--" }));
+        comboBox_courseID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--" }));
 
         jLabel5.setFont(new java.awt.Font("Calisto MT", 1, 14)); // NOI18N
         jLabel5.setText("Course ID :");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_Timetable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -257,10 +267,9 @@ public class AdminViewTimetable extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
+        tbl_Timetable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tbl_Timetable);
 
-        btn_Menu.setIcon(new javax.swing.ImageIcon("C:\\Users\\chand\\OneDrive\\Desktop\\GitHub Clones\\Learning-Management-System-using-Java\\LearningManagementSystem\\src\\main\\java\\StudentActivities\\Icons\\MenuColored.png")); // NOI18N
         btn_Menu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_Menu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -303,7 +312,7 @@ public class AdminViewTimetable extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboBox_courseID, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btn_Verify, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -336,7 +345,7 @@ public class AdminViewTimetable extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(comboBox_courseID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btn_Verify, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addComponent(jLabel6)
@@ -357,6 +366,12 @@ public class AdminViewTimetable extends javax.swing.JFrame {
             drawer.show();
         }
     }//GEN-LAST:event_btn_MenuMouseClicked
+
+    private void btn_VerifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VerifyActionPerformed
+        // TODO add your handling code here:
+        String selectedCourseID = comboBox_courseID.getSelectedItem().toString();
+        TimetableSearchByCourse.searchTimetableByCourse(tbl_Timetable, selectedCourseID);
+    }//GEN-LAST:event_btn_VerifyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -396,14 +411,14 @@ public class AdminViewTimetable extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btn_Menu;
     private javax.swing.JButton btn_Verify;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> comboBox_courseID;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lbl_adminUsername;
     private javax.swing.JLabel lbl_studentID;
+    private javax.swing.JTable tbl_Timetable;
     // End of variables declaration//GEN-END:variables
 }

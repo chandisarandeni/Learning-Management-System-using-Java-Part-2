@@ -96,9 +96,6 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="btn_Menu">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\chand\OneDrive\Desktop\GitHub Clones\Learning-Management-System-using-Java\LearningManagementSystem\src\main\java\StudentActivities\Icons\MenuColored.png"/>
-        </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Hand Cursor"/>
         </Property>
