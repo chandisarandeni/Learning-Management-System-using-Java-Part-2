@@ -5,6 +5,7 @@ LoginFrames\StudentForgotPassword$7.class
 StudentActivities\StudentDashboard$2.class
 LoginFrames\LecturerForgotPassword.class
 LoginFrames\LecturerLogin$2.class
+AdminActivities\AdminViewLecturer$7.class
 AdminActivities\AdminViewStudent$4.class
 AdminActivities\CommonClasses\AvailableSeatCalculator.class
 StudentActivities\StudentViewTimetable.class
@@ -20,7 +21,6 @@ AdminActivities\CommonClasses\TotalCourseCounter.class
 LoginFrames\AdminLogin$8.class
 AdminActivities\AdminViewStudentRegister$4.class
 LoginFrames\LecturerLogin$7.class
-AdminActivities\AdminViewStudentEdit$1.class
 com\learningmanagementsystem\LearningManagementSystem.class
 AdminActivities\CommonClasses\LecturerDetailsLoader.class
 AdminActivities\AdminViewLecturer$1.class
@@ -30,11 +30,9 @@ StudentActivities\StudentViewExamination$3.class
 AdminActivities\AdminViewCourseContent$4.class
 AdminActivities\AdminViewExamination$3.class
 StudentActivities\StudentViewTimetable$3.class
-AdminActivities\AdminViewStudentEdit$2.class
 AdminActivities\AdminViewStudentRegister$3.class
 StudentActivities\StudentViewTimetable$2.class
 AdminActivities\AdminViewLecturer$6.class
-AdminActivities\AdminViewLecturerEdit$2.class
 AdminActivities\AdminViewTimetable$1.class
 CommonClasses\DynamicSlider.class
 StudentActivities\StudentDashboard$1.class
@@ -43,7 +41,6 @@ LoginFrames\LecturerLogin$8.class
 AdminActivities\CommonClasses\TimetableSearchByCourse.class
 AdminActivities\AdminViewLecturerRegister$1.class
 LecturerActivities\LecturerViewTimetable$7.class
-AdminActivities\AdminViewLecturerEdit.class
 LoginFrames\StudentForgotPassword$10.class
 AdminActivities\AdminViewExamination$4.class
 AdminActivities\AdminViewStudent$5.class
@@ -54,6 +51,7 @@ StudentActivities\StudentViewExamination$2.class
 AdminActivities\CommonClasses\StudentCountByCourse.class
 StudentActivities\StudentViewTimetable$1.class
 LoginFrames\AdminForgotPassword$6.class
+AdminActivities\CommonClasses\StudentDataRetriever.class
 AdminActivities\AdminViewCourseContent$2.class
 LecturerActivities\CommonClasses\ScheduleAdder.class
 AdminActivities\AdminViewTimetable$2.class
@@ -75,17 +73,20 @@ AdminActivities\AdminViewExamination$2.class
 LoginFrames\LecturerLogin$3.class
 AdminActivities\AdminViewStudentRegister$2.class
 LecturerActivities\LecturerDashboard$3.class
+AdminActivities\AdminViewLecturer$8.class
 AdminActivities\CommonClasses\StudentDataLoader.class
 AdminActivities\AdminDashboard.class
 StudentActivities\StudentViewMessages.class
+AdminActivities\CommonClasses\StudentDataDeleter.class
 LoginFrames\AdminForgotPassword$10.class
 LecturerActivities\LecturerViewMessages$1.class
-AdminActivities\AdminViewStudentEdit.class
+AdminActivities\CommonClasses\TodayLecturesLoader.class
 AdminActivities\CommonClasses\LecturerCount.class
 LoginFrames\Home$7.class
 LoginFrames\AdminForgotPassword$4.class
 LoginFrames\StudentForgotPassword$9.class
 AdminActivities\AdminViewStudentRegister$1.class
+AdminActivities\AdminViewStudent$9.class
 LoginFrames\LecturerLogin$4.class
 LecturerActivities\LecturerViewMessages.class
 AdminActivities\AdminViewTimetable$4.class
@@ -93,7 +94,9 @@ LecturerActivities\LecturerViewCourseContent.class
 LoginFrames\Home$8.class
 AdminActivities\AdminViewExamination$1.class
 AdminActivities\AdminViewCourseContent$1.class
+AdminActivities\AdminViewStudent$8.class
 LecturerActivities\LecturerViewExamination$8.class
+AdminActivities\CommonClasses\StudentDataUpdater.class
 LoginFrames\AdminLogin$3.class
 LoginFrames\AdminForgotPassword$3.class
 LoginFrames\StudentForgotPassword$8.class
@@ -111,6 +114,7 @@ AdminActivities\AdminViewSettings$2.class
 LecturerActivities\LecturerViewTimetable.class
 AdminActivities\AdminViewStudentRegister$6.class
 AdminActivities\CommonClasses\UpdateSubjectStatus.class
+AdminActivities\AdminViewStudent$10.class
 LoginFrames\LecturerForgotPassword$3.class
 StudentActivities\StudentViewSettings$3.class
 LecturerActivities\LecturerViewCourseContent$6.class
@@ -139,6 +143,7 @@ LoginFrames\LecturerForgotPassword$2.class
 LoginFrames\AdminForgotPassword$1.class
 StudentActivities\CommonClasses\StudentIDRetriever.class
 LoginFrames\AdminLogin$1.class
+AdminActivities\CommonClasses\LecturerDataDeleter.class
 StudentActivities\StudentViewCourseContent.class
 LecturerActivities\LecturerViewCourseContent$1.class
 LoginFrames\LecturerLogin.class
@@ -154,6 +159,7 @@ StudentActivities\StudentDashboard.class
 LecturerActivities\CommonClasses\CourseDataLoader.class
 LoginFrames\LecturerForgotPassword$9.class
 StudentActivities\StudentViewExamination.class
+AdminActivities\CommonClasses\LecturerDataUpdater.class
 LecturerActivities\LecturerViewCourseContent$2.class
 AdminActivities\AdminViewCourseContent$5.class
 LoginFrames\LecturerForgotPassword$7.class
@@ -174,7 +180,6 @@ AdminActivities\CommonClasses\StudentResultsRetriever.class
 AdminActivities\AdminViewStudent$3.class
 LoginFrames\StudentForgotPassword$3.class
 LecturerActivities\LecturerViewCourseContent$5.class
-AdminActivities\AdminViewLecturerEdit$1.class
 StudentActivities\StudentDashboard$3.class
 AdminActivities\AdminViewStudentRegister.class
 AdminActivities\CommonClasses\LecturerRegistration.class
@@ -211,6 +216,7 @@ LoginFrames\StudentForgotPassword$1.class
 LoginFrames\StudentForgotPassword$13.class
 StudentActivities\StudentViewMessages$2.class
 StudentActivities\StudentViewCourseContent$1.class
+AdminActivities\CommonClasses\LecturerDataRetriever.class
 AdminActivities\AdminViewStudent$2.class
 AdminActivities\AdminViewLecturer$3.class
 LoginFrames\Home.class

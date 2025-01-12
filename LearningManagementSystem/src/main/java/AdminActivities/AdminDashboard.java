@@ -80,7 +80,9 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         int totalCourses = TotalCourseCounter.getTotalCourses();
         lbl_totalCourseCount.setText(String.valueOf(totalCourses)); // Update the label
-
+        
+        TodayLecturesLoader.loadTodayLectures(jTable1);
+        lbl_adminUsername.setVisible(false);
     }
 
     private DrawerItem createDrawerItem(String title) {
@@ -124,6 +126,7 @@ public class AdminDashboard extends javax.swing.JFrame {
             case "Lecturer":
                 AdminViewLecturer adminViewLecturer = new AdminViewLecturer(adminUsername);
                 adminViewLecturer.setVisible(true);
+                this.hide();
                 if (drawer.isShow()) {
                     Timer timer = new Timer(300, e -> drawer.hide());
                     drawer.hide();
@@ -253,7 +256,6 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btn_Menu.setIcon(new javax.swing.ImageIcon("C:\\Users\\chand\\OneDrive\\Desktop\\GitHub Clones\\Learning-Management-System-using-Java\\LearningManagementSystem\\src\\main\\java\\StudentActivities\\Icons\\MenuColored.png")); // NOI18N
         btn_Menu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_Menu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -472,20 +474,20 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Lecturer", "Subject", "Batch", "Hall"
+                "Subject", "Course", "Hall"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -501,11 +503,9 @@ public class AdminDashboard extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(220);
             jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(220);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(30);
             jTable1.getColumnModel().getColumn(2).setResizable(false);
             jTable1.getColumnModel().getColumn(2).setPreferredWidth(30);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(30);
         }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);

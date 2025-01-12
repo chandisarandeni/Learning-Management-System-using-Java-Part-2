@@ -99,6 +99,7 @@ public class AdminViewExamination extends javax.swing.JFrame {
             case "Lecturer":
                 AdminViewLecturer adminViewLecturer = new AdminViewLecturer(adminUsername);
                 adminViewLecturer.setVisible(true);
+                this.hide();
                 if (drawer.isShow()) {
                     Timer timer = new Timer(300, e -> drawer.hide());
                     drawer.hide();
