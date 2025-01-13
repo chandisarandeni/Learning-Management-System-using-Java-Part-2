@@ -69,6 +69,7 @@ LoginFrames\AdminLogin$2.class
 LoginFrames\LecturerLogin$6.class
 AdminActivities\CommonClasses\SubjectDataRetriever.class
 AdminActivities\AdminViewStudent.class
+AdminActivities\CommonClasses\ReportGenerator.class
 AdminActivities\AdminViewExamination$2.class
 LoginFrames\LecturerLogin$3.class
 AdminActivities\AdminViewStudentRegister$2.class

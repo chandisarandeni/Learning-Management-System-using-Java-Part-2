@@ -59,13 +59,13 @@ public class AdminViewStudentRegister extends javax.swing.JFrame {
         // Optionally, display the admin username in the dashboard
         lbl_adminUsername.setText(adminUsername);
         CourseIDLoader.loadCourseIDs(comboBox_courseID);
-        
+
         txt_studentEmail.setText("");
         comboBox_courseID.setSelectedItem(null); // Clears the selection
-        
+
         btn_Register.setFocusable(false);
         btn_Cancel.setFocusable(false);
-        
+
     }
 
     private DrawerItem createDrawerItem(String title) {
@@ -566,9 +566,12 @@ public class AdminViewStudentRegister extends javax.swing.JFrame {
                 StudentRegistration.registerStudent(studentID, studentName, studentNIC, studentContact,
                         studentEmail, studentPassword, courseID, studentAddress);
                 txt_studentEmail.setText(studentEmail); // Update email in the form
+
+                AdminViewStudent adminViewStudent = new AdminViewStudent(adminUsername);
+                adminViewStudent.setVisible(true);
+                this.hide();
             }
         });
-
     }//GEN-LAST:event_btn_RegisterActionPerformed
 
     /**

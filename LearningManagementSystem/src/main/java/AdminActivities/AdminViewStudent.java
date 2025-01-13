@@ -612,6 +612,9 @@ public class AdminViewStudent extends javax.swing.JFrame {
                 txt_studentAddress.setText(studentData[5]);
             } else {
                 JOptionPane.showMessageDialog(null, "Student not found!");
+                AdminViewStudent adminViewStudent = new AdminViewStudent(adminUsername);
+                adminViewStudent.setVisible(true);
+                this.hide();
             }
         });
 
@@ -672,6 +675,9 @@ public class AdminViewStudent extends javax.swing.JFrame {
                 this.hide();
             } else {
                 JOptionPane.showMessageDialog(null, "Failed to update student information!");
+                AdminViewStudent adminViewStudent = new AdminViewStudent(adminUsername);
+                adminViewStudent.setVisible(true);
+                this.hide();
             }
         });
 
@@ -695,8 +701,14 @@ public class AdminViewStudent extends javax.swing.JFrame {
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {
                 JOptionPane.showMessageDialog(null, "Student deleted successfully.");
+                AdminViewStudent adminViewStudent = new AdminViewStudent(adminUsername);
+                adminViewStudent.setVisible(true);
+                this.hide();
             } else {
                 JOptionPane.showMessageDialog(null, "Failed to delete student.");
+                AdminViewStudent adminViewStudent = new AdminViewStudent(adminUsername);
+                adminViewStudent.setVisible(true);
+                this.hide();
             }
 
         } catch (Exception e) {

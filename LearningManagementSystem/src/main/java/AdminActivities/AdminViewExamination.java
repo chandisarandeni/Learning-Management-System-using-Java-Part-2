@@ -4,16 +4,29 @@
  */
 package AdminActivities;
 
+import AdminActivities.CommonClasses.ReportGenerator;
 import AdminActivities.CommonClasses.StudentResultsRetriever;
 import CommonClasses.ImageResizer;
 import LoginFrames.Home;
 import StudentActivities.StudentDashboard;
 import StudentActivities.StudentViewTimetable;
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import javaswingdev.drawer.Drawer;
 import javaswingdev.drawer.DrawerController;
 import javaswingdev.drawer.DrawerItem;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -26,12 +39,15 @@ public class AdminViewExamination extends javax.swing.JFrame {
      */
     private final DrawerController drawer;
     public String adminUsername;
+    public String studentID;
 
     public AdminViewExamination(String adminUsername) {
         initComponents();
 
         this.adminUsername = adminUsername;
         lbl_adminUsername.setText(adminUsername);
+
+        studentID = txt_studentID.getText();
 
         String MenuColored = "src\\main\\java\\StudentActivities\\Icons\\MenuColored.png";
         btn_Menu.setIcon(ImageResizer.resizeImage(MenuColored, 35, 35));
@@ -56,6 +72,8 @@ public class AdminViewExamination extends javax.swing.JFrame {
 
         // Optionally, display the admin username in the dashboard
         lbl_adminUsername.setText(adminUsername);
+        lbl_showStudentName.setText("");
+        lbl_showStudentID.setText("");
     }
 
     private DrawerItem createDrawerItem(String title) {
@@ -520,6 +538,17 @@ public class AdminViewExamination extends javax.swing.JFrame {
 
     private void btn_Verify1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Verify1ActionPerformed
         // TODO add your handling code here:
+        // Get the studentID from the text field as a String
+        studentID = txt_studentID.getText();
+
+        // Ensure the studentID is not empty or invalid
+        if (studentID != null && !studentID.trim().isEmpty()) {
+            // Call the generateReport method from ReportGenerator class
+            ReportGenerator.generateReport(studentID);
+        } else {
+            // Show an error message if the studentID is not valid
+            JOptionPane.showMessageDialog(null, "Please enter a valid student ID.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btn_Verify1ActionPerformed
 
     /**

@@ -13,6 +13,9 @@ import LoginFrames.Home;
 import StudentActivities.StudentDashboard;
 import StudentActivities.StudentViewTimetable;
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import javaswingdev.drawer.Drawer;
 import javaswingdev.drawer.DrawerController;
 import javaswingdev.drawer.DrawerItem;
@@ -242,7 +245,6 @@ public class AdminViewLecturer extends javax.swing.JFrame {
         txt_lecturerName = new javax.swing.JTextField();
         txt_lecturerNIC = new javax.swing.JTextField();
         btn_Update = new javax.swing.JButton();
-        btn_Delete = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         txt_getLecturerID = new javax.swing.JTextField();
         btn_LoadLecturer = new javax.swing.JButton();
@@ -314,19 +316,6 @@ public class AdminViewLecturer extends javax.swing.JFrame {
             }
         });
 
-        btn_Delete.setBackground(new java.awt.Color(0, 0, 0));
-        btn_Delete.setFont(new java.awt.Font("Calisto MT", 1, 15)); // NOI18N
-        btn_Delete.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Delete.setText("Delete");
-        btn_Delete.setAlignmentY(0.0F);
-        btn_Delete.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_Delete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_Delete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_DeleteActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -335,8 +324,6 @@ public class AdminViewLecturer extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addComponent(btn_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
@@ -404,9 +391,7 @@ public class AdminViewLecturer extends javax.swing.JFrame {
                             .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btn_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -441,6 +426,12 @@ public class AdminViewLecturer extends javax.swing.JFrame {
         btn_Edit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_EditMouseClicked(evt);
+            }
+        });
+
+        btn_DeleteLec.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_DeleteLecMouseClicked(evt);
             }
         });
 
@@ -586,6 +577,9 @@ public class AdminViewLecturer extends javax.swing.JFrame {
                 // Optionally set address as well
             } else {
                 JOptionPane.showMessageDialog(null, "Lecturer not found!");
+                AdminViewLecturer adminViewLecturer = new AdminViewLecturer(adminUsername);
+                adminViewLecturer.setVisible(true);
+                this.hide();
             }
         });
 
@@ -617,26 +611,41 @@ public class AdminViewLecturer extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_UpdateActionPerformed
 
-    private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeleteActionPerformed
+    private void btn_DeleteLecMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_DeleteLecMouseClicked
         // TODO add your handling code here:
-        btn_Delete.addActionListener(e -> {
-            String lecturerID = txt_getLecturerID.getText(); // Get lecturer ID from the input field
+        // TODO add your handling code here:
+// Database connection details
+        String DB_URL = "jdbc:mysql://localhost:3306/LMS"; // Your database name
+        String DB_USER = "root"; // Your database username
+        String DB_PASSWORD = ""; // Your database password
 
-            // Call the delete method from LecturerDataDeleter
-            boolean isDeleted = LecturerDataDeleter.deleteLecturer(lecturerID);
+        String query = "DELETE FROM Lecturer WHERE lecturerID = ?";
 
-            if (isDeleted) {
-                JOptionPane.showMessageDialog(null, "Lecturer information deleted successfully!");
-                // Optionally refresh or navigate to another screen
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            // Set the lecturer ID parameter
+            preparedStatement.setString(1, txt_getLecturerID.getText());
+
+            // Execute the delete
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                JOptionPane.showMessageDialog(null, "Lecturer deleted successfully.");
                 AdminViewLecturer adminViewLecturer = new AdminViewLecturer(adminUsername);
                 adminViewLecturer.setVisible(true);
                 this.hide();
             } else {
-                JOptionPane.showMessageDialog(null, "Failed to delete lecturer information!");
+                JOptionPane.showMessageDialog(null, "Failed to delete lecturer.");
+                AdminViewLecturer adminViewLecturer = new AdminViewLecturer(adminUsername);
+                adminViewLecturer.setVisible(true);
+                this.hide();
             }
-        });
 
-    }//GEN-LAST:event_btn_DeleteActionPerformed
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error occurred while deleting lecturer.");
+        }
+
+    }//GEN-LAST:event_btn_DeleteLecMouseClicked
 
     /**
      * @param args the command line arguments
@@ -675,7 +684,6 @@ public class AdminViewLecturer extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btn_Add;
-    private javax.swing.JButton btn_Delete;
     private javax.swing.JLabel btn_DeleteLec;
     private javax.swing.JLabel btn_Edit;
     private javax.swing.JButton btn_LoadLecturer;

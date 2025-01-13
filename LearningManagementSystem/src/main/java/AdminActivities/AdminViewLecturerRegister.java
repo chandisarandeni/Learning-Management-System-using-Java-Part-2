@@ -464,8 +464,14 @@ public class AdminViewLecturerRegister extends javax.swing.JFrame {
 
         if (isRegistered) {
             JOptionPane.showMessageDialog(this, "Lecturer registered successfully! ID: " + lecturerID, "Success", JOptionPane.INFORMATION_MESSAGE);
+            AdminViewLecturer adminViewLecturer = new AdminViewLecturer(adminUsername);
+            adminViewLecturer.setVisible(true);
+            this.hide();
         } else {
             JOptionPane.showMessageDialog(this, "Failed to register lecturer.", "Error", JOptionPane.ERROR_MESSAGE);
+            AdminViewLecturer adminViewLecturer = new AdminViewLecturer(adminUsername);
+            adminViewLecturer.setVisible(true);
+            this.hide();
         }
     }//GEN-LAST:event_btn_RegisterActionPerformed
 
