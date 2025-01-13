@@ -27,9 +27,13 @@ public class LecturerViewSettings extends javax.swing.JFrame {
      * Creates new form LecturerViewSettings
      */
     private final DrawerController drawer;
+    String lecturerID;
 
-    public LecturerViewSettings() {
+    public LecturerViewSettings(String lecturerID) {
         initComponents();
+        
+        this.lecturerID = lecturerID;
+        lbl_lecturerID.setText(lecturerID);
 
         String MenuColored = "src\\main\\java\\StudentActivities\\Icons\\MenuColored.png";
         btn_Menu.setIcon(ImageResizer.resizeImage(MenuColored, 35, 35));
@@ -66,7 +70,7 @@ public class LecturerViewSettings extends javax.swing.JFrame {
     private void handleDrawerItemSelection(String title) {
         switch (title) {
             case "Dashboard":
-                LecturerDashboard lecturerDashboard = new LecturerDashboard();
+                LecturerDashboard lecturerDashboard = new LecturerDashboard(lecturerID);
                 lecturerDashboard.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -79,7 +83,7 @@ public class LecturerViewSettings extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Time Table":
-                LecturerViewTimetable lecturerViewTimetable = new LecturerViewTimetable();
+                LecturerViewTimetable lecturerViewTimetable = new LecturerViewTimetable(lecturerID);
                 lecturerViewTimetable.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -92,7 +96,7 @@ public class LecturerViewSettings extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Course Content":
-                LecturerViewCourseContent lecturerViewCourseContent = new LecturerViewCourseContent();
+                LecturerViewCourseContent lecturerViewCourseContent = new LecturerViewCourseContent(lecturerID);
                 lecturerViewCourseContent.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -105,7 +109,7 @@ public class LecturerViewSettings extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Examination":
-                LecturerViewExamination lectureViewExamination = new LecturerViewExamination();
+                LecturerViewExamination lectureViewExamination = new LecturerViewExamination(lecturerID);
                 lectureViewExamination.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -118,7 +122,7 @@ public class LecturerViewSettings extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Message":
-                LecturerViewMessages lecturerViewMessages = new LecturerViewMessages();
+                LecturerViewMessages lecturerViewMessages = new LecturerViewMessages(lecturerID);
                 lecturerViewMessages.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -131,7 +135,7 @@ public class LecturerViewSettings extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Settings":
-                LecturerViewSettings lecturerViewSettings = new LecturerViewSettings();
+                LecturerViewSettings lecturerViewSettings = new LecturerViewSettings(lecturerID);
                 lecturerViewSettings.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -177,7 +181,7 @@ public class LecturerViewSettings extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btn_Edit = new javax.swing.JLabel();
-        lbl_adminUsername = new javax.swing.JLabel();
+        lbl_lecturerID = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -200,7 +204,6 @@ public class LecturerViewSettings extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btn_Menu.setIcon(new javax.swing.ImageIcon("C:\\Users\\chand\\OneDrive\\Desktop\\GitHub Clones\\Learning-Management-System-using-Java\\LearningManagementSystem\\src\\main\\java\\StudentActivities\\Icons\\MenuColored.png")); // NOI18N
         btn_Menu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_Menu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -230,14 +233,13 @@ public class LecturerViewSettings extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Calisto MT", 1, 24)); // NOI18N
         jLabel4.setText("Lecturers");
 
-        btn_Edit.setIcon(new javax.swing.ImageIcon("C:\\Users\\chand\\OneDrive\\Desktop\\GitHub Clones\\Learning-Management-System-using-Java\\LearningManagementSystem\\src\\main\\java\\AdminActivities\\Icons\\Edit.png")); // NOI18N
         btn_Edit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_EditMouseClicked(evt);
             }
         });
 
-        lbl_adminUsername.setText("AdminID");
+        lbl_lecturerID.setText("AdminID");
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
@@ -369,7 +371,7 @@ public class LecturerViewSettings extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addGap(330, 330, 330)
-                        .addComponent(lbl_adminUsername)
+                        .addComponent(lbl_lecturerID)
                         .addGap(22, 22, 22))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 101, Short.MAX_VALUE)
@@ -399,7 +401,7 @@ public class LecturerViewSettings extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(lbl_adminUsername))))
+                            .addComponent(lbl_lecturerID))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -461,7 +463,7 @@ public class LecturerViewSettings extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LecturerViewSettings().setVisible(true);
+                new LecturerViewSettings("").setVisible(true);
             }
         });
     }
@@ -492,6 +494,6 @@ public class LecturerViewSettings extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
-    private javax.swing.JLabel lbl_adminUsername;
+    private javax.swing.JLabel lbl_lecturerID;
     // End of variables declaration//GEN-END:variables
 }

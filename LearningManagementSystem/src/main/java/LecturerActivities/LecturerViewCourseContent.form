@@ -31,7 +31,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                      <Component id="lbl_studentID" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbl_lecturerID" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -79,7 +79,7 @@
                       <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                       <Component id="btn_Menu" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="lbl_studentID" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbl_lecturerID" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -119,9 +119,6 @@
     </Component>
     <Component class="javax.swing.JLabel" name="btn_Menu">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\chand\OneDrive\Desktop\GitHub Clones\Learning-Management-System-using-Java\LearningManagementSystem\src\main\java\StudentActivities\Icons\MenuColored.png"/>
-        </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Hand Cursor"/>
         </Property>
@@ -138,7 +135,7 @@
         <Property name="text" type="java.lang.String" value="_________________________________________________________"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbl_studentID">
+    <Component class="javax.swing.JLabel" name="lbl_lecturerID">
       <Properties>
         <Property name="text" type="java.lang.String" value="LecturerID"/>
       </Properties>

@@ -27,10 +27,14 @@ public class LecturerDashboard extends javax.swing.JFrame {
      * Creates new form LecturerDashboard
      */
     private final DrawerController drawer;
-
-    public LecturerDashboard() {
+    String lecturerID;
+    
+    public LecturerDashboard(String lecturerID) {
         initComponents();
 
+        this.lecturerID = lecturerID;
+        lbl_lecturerID.setText(lecturerID);
+        
         String MenuColored = "src\\main\\java\\StudentActivities\\Icons\\MenuColored.png";
         btn_Menu.setIcon(ImageResizer.resizeImage(MenuColored, 35, 35));
 
@@ -64,7 +68,7 @@ public class LecturerDashboard extends javax.swing.JFrame {
     private void handleDrawerItemSelection(String title) {
         switch (title) {
             case "Dashboard":
-                LecturerDashboard lecturerDashboard = new LecturerDashboard();
+                LecturerDashboard lecturerDashboard = new LecturerDashboard(lecturerID);
                 lecturerDashboard.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -77,7 +81,7 @@ public class LecturerDashboard extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Time Table":
-                LecturerViewTimetable lecturerViewTimetable = new LecturerViewTimetable();
+                LecturerViewTimetable lecturerViewTimetable = new LecturerViewTimetable(lecturerID);
                 lecturerViewTimetable.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -90,7 +94,7 @@ public class LecturerDashboard extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Course Content":
-                LecturerViewCourseContent lecturerViewCourseContent = new LecturerViewCourseContent();
+                LecturerViewCourseContent lecturerViewCourseContent = new LecturerViewCourseContent(lecturerID);
                 lecturerViewCourseContent.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -103,7 +107,7 @@ public class LecturerDashboard extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Examination":
-                LecturerViewExamination lectureViewExamination = new LecturerViewExamination();
+                LecturerViewExamination lectureViewExamination = new LecturerViewExamination(lecturerID);
                 lectureViewExamination.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -116,7 +120,7 @@ public class LecturerDashboard extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Message":
-                LecturerViewMessages lecturerViewMessages = new LecturerViewMessages();
+                LecturerViewMessages lecturerViewMessages = new LecturerViewMessages(lecturerID);
                 lecturerViewMessages.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -129,7 +133,7 @@ public class LecturerDashboard extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Settings":
-                LecturerViewSettings lecturerViewSettings = new LecturerViewSettings();
+                LecturerViewSettings lecturerViewSettings = new LecturerViewSettings(lecturerID);
                 lecturerViewSettings.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -172,7 +176,7 @@ public class LecturerDashboard extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btn_Menu = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        lbl_studentID = new javax.swing.JLabel();
+        lbl_lecturerID = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
@@ -203,7 +207,6 @@ public class LecturerDashboard extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
         jLabel1.setText("Today Lecture");
 
-        btn_Menu.setIcon(new javax.swing.ImageIcon("C:\\Users\\chand\\OneDrive\\Desktop\\GitHub Clones\\Learning-Management-System-using-Java\\LearningManagementSystem\\src\\main\\java\\StudentActivities\\Icons\\MenuColored.png")); // NOI18N
         btn_Menu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_Menu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -214,7 +217,7 @@ public class LecturerDashboard extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Calisto MT", 1, 24)); // NOI18N
         jLabel2.setText("_________________________________________________________");
 
-        lbl_studentID.setText("LecturerID");
+        lbl_lecturerID.setText("LecturerID");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -424,7 +427,7 @@ public class LecturerDashboard extends javax.swing.JFrame {
                         .addComponent(btn_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
-                        .addComponent(lbl_studentID)))
+                        .addComponent(lbl_lecturerID)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
@@ -452,7 +455,7 @@ public class LecturerDashboard extends javax.swing.JFrame {
                         .addGap(9, 9, 9)
                         .addComponent(btn_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(lbl_studentID))
+                        .addComponent(lbl_lecturerID))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jLabel4)
@@ -511,7 +514,7 @@ public class LecturerDashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LecturerDashboard().setVisible(true);
+                new LecturerDashboard("").setVisible(true);
             }
         });
     }
@@ -544,6 +547,6 @@ public class LecturerDashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lbl_studentID;
+    private javax.swing.JLabel lbl_lecturerID;
     // End of variables declaration//GEN-END:variables
 }

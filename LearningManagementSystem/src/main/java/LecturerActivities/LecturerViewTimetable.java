@@ -32,9 +32,13 @@ public class LecturerViewTimetable extends javax.swing.JFrame {
      * Creates new form LecturerViewTimetable
      */
     private final DrawerController drawer;
+    String lecturerID;
 
-    public LecturerViewTimetable() {
+    public LecturerViewTimetable(String lecturerID) {
         initComponents();
+        
+        this.lecturerID = lecturerID;
+        lbl_lecturerID.setText(lecturerID);
 
         String MenuColored = "src\\main\\java\\StudentActivities\\Icons\\MenuColored.png";
         btn_Menu.setIcon(ImageResizer.resizeImage(MenuColored, 35, 35));
@@ -71,7 +75,7 @@ public class LecturerViewTimetable extends javax.swing.JFrame {
     private void handleDrawerItemSelection(String title) {
         switch (title) {
             case "Dashboard":
-                LecturerDashboard lecturerDashboard = new LecturerDashboard();
+                LecturerDashboard lecturerDashboard = new LecturerDashboard(lecturerID);
                 lecturerDashboard.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -84,7 +88,7 @@ public class LecturerViewTimetable extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Time Table":
-                LecturerViewTimetable lecturerViewTimetable = new LecturerViewTimetable();
+                LecturerViewTimetable lecturerViewTimetable = new LecturerViewTimetable(lecturerID);
                 lecturerViewTimetable.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -97,7 +101,7 @@ public class LecturerViewTimetable extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Course Content":
-                LecturerViewCourseContent lecturerViewCourseContent = new LecturerViewCourseContent();
+                LecturerViewCourseContent lecturerViewCourseContent = new LecturerViewCourseContent(lecturerID);
                 lecturerViewCourseContent.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -110,7 +114,7 @@ public class LecturerViewTimetable extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Examination":
-                LecturerViewExamination lectureViewExamination = new LecturerViewExamination();
+                LecturerViewExamination lectureViewExamination = new LecturerViewExamination(lecturerID);
                 lectureViewExamination.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -123,7 +127,7 @@ public class LecturerViewTimetable extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Message":
-                LecturerViewMessages lecturerViewMessages = new LecturerViewMessages();
+                LecturerViewMessages lecturerViewMessages = new LecturerViewMessages(lecturerID);
                 lecturerViewMessages.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -136,7 +140,7 @@ public class LecturerViewTimetable extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Settings":
-                LecturerViewSettings lecturerViewSettings = new LecturerViewSettings();
+                LecturerViewSettings lecturerViewSettings = new LecturerViewSettings(lecturerID);
                 lecturerViewSettings.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -181,7 +185,7 @@ public class LecturerViewTimetable extends javax.swing.JFrame {
         btn_Menu = new javax.swing.JLabel();
         btn_Verify1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        lbl_studentID = new javax.swing.JLabel();
+        lbl_lecturerID = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         comboBox_CourseID = new javax.swing.JComboBox<>();
@@ -244,7 +248,7 @@ public class LecturerViewTimetable extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Calisto MT", 1, 24)); // NOI18N
         jLabel2.setText("_________________________________________________________");
 
-        lbl_studentID.setText("LecturerID");
+        lbl_lecturerID.setText("LecturerID");
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
@@ -415,7 +419,7 @@ public class LecturerViewTimetable extends javax.swing.JFrame {
                         .addComponent(btn_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
-                        .addComponent(lbl_studentID)))
+                        .addComponent(lbl_lecturerID)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(277, 277, 277)
@@ -440,7 +444,7 @@ public class LecturerViewTimetable extends javax.swing.JFrame {
                         .addGap(9, 9, 9)
                         .addComponent(btn_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(lbl_studentID))
+                        .addComponent(lbl_lecturerID))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jLabel4)
@@ -541,7 +545,7 @@ public class LecturerViewTimetable extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LecturerViewTimetable().setVisible(true);
+                new LecturerViewTimetable("").setVisible(true);
             }
         });
     }
@@ -569,7 +573,7 @@ public class LecturerViewTimetable extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lbl_studentID;
+    private javax.swing.JLabel lbl_lecturerID;
     private javax.swing.JTextField txt_endTime;
     private javax.swing.JTextField txt_hallNumber;
     private javax.swing.JTextField txt_startTime;

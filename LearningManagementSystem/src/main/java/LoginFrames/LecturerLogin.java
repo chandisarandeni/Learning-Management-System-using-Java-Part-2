@@ -26,6 +26,8 @@ public class LecturerLogin extends javax.swing.JFrame {
     /**
      * Creates new form LecturerLogin
      */
+    String lecturerID;
+
     public LecturerLogin() {
         initComponents();
 
@@ -328,13 +330,14 @@ public class LecturerLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_lecturerPasswordActionPerformed
 
     private void btn_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LoginActionPerformed
-        // TODO add your handling code here:
+        // Get input values from the text fields
         String lecturerEmail = txt_lecturerUsername.getText();
         String lecturerPassword = txt_lecturerPassword.getText();
 
+// Database connection details
         String connectionString = "jdbc:mysql://localhost:3306/LMS";
-        String Username = "root";
-        String Password = "";
+        String Username = "root";  // Database username
+        String Password = "";      // Database password
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -344,11 +347,11 @@ public class LecturerLogin extends javax.swing.JFrame {
             // Establish connection to the database
             conn = DriverManager.getConnection(connectionString, Username, Password);
 
-            // SQL statement
-            String sql = "SELECT lecturerEmail, lecturerPassword FROM Lecturer WHERE lecturerEmail = ? AND lecturerPassword = ?";
+            // SQL statement to check if lecturer credentials are valid
+            String sql = "SELECT lecturerID FROM Lecturer WHERE lecturerEmail = ? AND lecturerPassword = ?";
             stmt = conn.prepareStatement(sql);
 
-            // Set parameters
+            // Set parameters for lecturerEmail and lecturerPassword
             stmt.setString(1, lecturerEmail);
             stmt.setString(2, lecturerPassword);
 
@@ -356,15 +359,20 @@ public class LecturerLogin extends javax.swing.JFrame {
             rs = stmt.executeQuery();
 
             if (rs.next()) {
-                // Lecturer login successful
-                LecturerDashboard lecturerDashboard = new LecturerDashboard();
+                // Lecturer login successful, retrieve lecturerID
+                String lecturerID = rs.getString("lecturerID");
+
+                // Open the Lecturer Dashboard
+                LecturerDashboard lecturerDashboard = new LecturerDashboard(lecturerID);
                 lecturerDashboard.setVisible(true);
-                this.setVisible(false);  // Hide login form
+
+                // Hide the login form
+                this.setVisible(false);
             } else {
-                // Invalid username or password
+                // Invalid email or password
                 JOptionPane.showMessageDialog(this, "Invalid username or password");
 
-                // Clear the input fields
+                // Clear input fields
                 txt_lecturerUsername.setText("");
                 txt_lecturerPassword.setText("");
             }
@@ -372,7 +380,7 @@ public class LecturerLogin extends javax.swing.JFrame {
             Logger.getLogger(LecturerLogin.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
         } finally {
-            // Ensure resources are closed
+            // Close database resources
             try {
                 if (rs != null) {
                     rs.close();

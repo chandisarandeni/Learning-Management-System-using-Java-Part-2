@@ -147,6 +147,7 @@ LoginFrames\AdminForgotPassword$1.class
 StudentActivities\CommonClasses\StudentIDRetriever.class
 LoginFrames\AdminLogin$1.class
 AdminActivities\CommonClasses\LecturerDataDeleter.class
+LecturerActivities\CommonClasses\LecturerRetriever.class
 StudentActivities\StudentViewCourseContent.class
 LecturerActivities\LecturerViewCourseContent$1.class
 LoginFrames\LecturerLogin.class
