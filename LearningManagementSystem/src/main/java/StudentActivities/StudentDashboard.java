@@ -6,12 +6,15 @@ package StudentActivities;
 
 import CommonClasses.ImageResizer;
 import LoginFrames.Home;
+import StudentActivities.CommonClasses.ContentStatusRetriever;
+import StudentActivities.CommonClasses.TimetableRetriever;
 import java.awt.Color;
 import java.awt.Font;
 import javaswingdev.drawer.Drawer;
 import javaswingdev.drawer.DrawerController;
 import javaswingdev.drawer.DrawerItem;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.Timer;
 
 /**
@@ -25,10 +28,10 @@ public class StudentDashboard extends javax.swing.JFrame {
      */
     private final DrawerController drawer;
     String studentID;
-    
+
     public StudentDashboard(String studentID) {
         initComponents();
-        
+
         this.studentID = studentID;
         lbl_studentID.setText(studentID);
 
@@ -50,6 +53,13 @@ public class StudentDashboard extends javax.swing.JFrame {
                 .space(100)
                 .addChild(createDrawerItem("Logout"))
                 .build();
+
+        ContentStatusRetriever retriever = new ContentStatusRetriever();
+        retriever.retrieveContentStatus(studentID, tbl_contentStatus);
+
+        TimetableRetriever sretriever = new TimetableRetriever();
+        sretriever.retrieveTimetable(studentID, lbl_currentDate, lbl_startTime, lbl_Subject, lbl_lectureHall);
+
     }
 
     private DrawerItem createDrawerItem(String title) {
@@ -104,7 +114,7 @@ public class StudentDashboard extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Examination":
-                StudentViewExamination studentViewExamination = new StudentViewExamination();
+                StudentViewExamination studentViewExamination = new StudentViewExamination(studentID);
                 studentViewExamination.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -117,7 +127,7 @@ public class StudentDashboard extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Message":
-                StudentViewMessages studentViewMessages = new StudentViewMessages();
+                StudentViewMessages studentViewMessages = new StudentViewMessages(studentID);
                 studentViewMessages.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -130,7 +140,7 @@ public class StudentDashboard extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Settings":
-                StudentViewSettings studentViewSettings = new StudentViewSettings();
+                StudentViewSettings studentViewSettings = new StudentViewSettings(studentID);
                 studentViewSettings.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -174,33 +184,27 @@ public class StudentDashboard extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         lbl_studentID = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_contentStatus = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        lbl_Subject = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        lbl_lectureHall = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        lbl_currentDate = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        lbl_startTime = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jCalendarPanel1 = new de.wannawork.jcalendar.JCalendarPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btn_Menu.setIcon(new javax.swing.ImageIcon("C:\\Users\\chand\\OneDrive\\Desktop\\GitHub Clones\\Learning-Management-System-using-Java\\LearningManagementSystem\\src\\main\\java\\StudentActivities\\Icons\\MenuColored.png")); // NOI18N
         btn_Menu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_Menu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -213,7 +217,7 @@ public class StudentDashboard extends javax.swing.JFrame {
 
         lbl_studentID.setText("StudentID");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_contentStatus.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -239,12 +243,12 @@ public class StudentDashboard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(150);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(50);
+        jScrollPane1.setViewportView(tbl_contentStatus);
+        if (tbl_contentStatus.getColumnModel().getColumnCount() > 0) {
+            tbl_contentStatus.getColumnModel().getColumn(0).setResizable(false);
+            tbl_contentStatus.getColumnModel().getColumn(0).setPreferredWidth(150);
+            tbl_contentStatus.getColumnModel().getColumn(1).setResizable(false);
+            tbl_contentStatus.getColumnModel().getColumn(1).setPreferredWidth(50);
         }
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -255,17 +259,8 @@ public class StudentDashboard extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
         jLabel5.setText(":");
 
-        jLabel6.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
-        jLabel6.setText("Sample Data");
-
-        jLabel7.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
-        jLabel7.setText(":");
-
-        jLabel8.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
-        jLabel8.setText("Lecturer");
-
-        jLabel9.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
-        jLabel9.setText("Sample Data");
+        lbl_Subject.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
+        lbl_Subject.setText("Sample Data");
 
         jLabel10.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
         jLabel10.setText(":");
@@ -273,8 +268,8 @@ public class StudentDashboard extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
         jLabel11.setText("Lecture Hall");
 
-        jLabel12.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
-        jLabel12.setText("Sample Data");
+        lbl_lectureHall.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
+        lbl_lectureHall.setText("Sample Data");
 
         jLabel13.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
         jLabel13.setText("Date");
@@ -282,29 +277,17 @@ public class StudentDashboard extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
         jLabel14.setText(":");
 
-        jLabel15.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
-        jLabel15.setText("Sample Data");
+        lbl_currentDate.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
+        lbl_currentDate.setText("Sample Data");
 
         jLabel16.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
         jLabel16.setText(":");
 
-        jLabel17.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
-        jLabel17.setText("Sample Data");
+        lbl_startTime.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
+        lbl_startTime.setText("Sample Data");
 
         jLabel18.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
         jLabel18.setText("Time");
-
-        jLabel19.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
-        jLabel19.setText(":");
-
-        jLabel20.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
-        jLabel20.setText("Additional");
-
-        jLabel21.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
-        jLabel21.setText("Sample Data");
-
-        jLabel22.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
-        jLabel22.setText("There have no lecture today");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -314,42 +297,30 @@ public class StudentDashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel8)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel13)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(36, 36, 36)
                                     .addComponent(jLabel14))
-                                .addComponent(jLabel16)
-                                .addComponent(jLabel11))
+                                .addComponent(jLabel16))
                             .addComponent(jLabel18))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel17)
+                            .addComponent(lbl_currentDate)
+                            .addComponent(lbl_startTime)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jLabel7))
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel5)
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel6)))))
+                                .addComponent(lbl_Subject))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel22)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel21)))))
+                        .addComponent(jLabel11)
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addComponent(lbl_lectureHall)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -359,42 +330,49 @@ public class StudentDashboard extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(jLabel14)
-                    .addComponent(jLabel15))
+                    .addComponent(lbl_currentDate))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(jLabel16)
-                    .addComponent(jLabel17))
+                    .addComponent(lbl_startTime))
                 .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel9))
+                    .addComponent(lbl_Subject))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(jLabel10)
-                    .addComponent(jLabel12))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel21))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel22)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lbl_lectureHall))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jLabel4.setFont(new java.awt.Font("Calisto MT", 1, 24)); // NOI18N
         jLabel4.setText("Student Dashboard");
 
         jLabel1.setFont(new java.awt.Font("Calisto MT", 1, 12)); // NOI18N
-        jLabel1.setText("Today Lecture");
+        jLabel1.setText("Next Lecturer");
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(jCalendarPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(54, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jCalendarPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -410,18 +388,22 @@ public class StudentDashboard extends javax.swing.JFrame {
                         .addComponent(lbl_studentID)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                                         .addComponent(jLabel1)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
+                                        .addGap(223, 223, 223))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(36, 36, 36)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                             .addComponent(jLabel2))
-                        .addGap(77, 77, 77))
+                        .addGap(29, 29, 29))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(277, 277, 277)
                         .addComponent(jLabel4)
@@ -442,13 +424,15 @@ public class StudentDashboard extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -501,31 +485,26 @@ public class StudentDashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btn_Menu;
+    private de.wannawork.jcalendar.JCalendarPanel jCalendarPanel1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lbl_Subject;
+    private javax.swing.JLabel lbl_currentDate;
+    private javax.swing.JLabel lbl_lectureHall;
+    private javax.swing.JLabel lbl_startTime;
     private javax.swing.JLabel lbl_studentID;
+    private javax.swing.JTable tbl_contentStatus;
     // End of variables declaration//GEN-END:variables
 }

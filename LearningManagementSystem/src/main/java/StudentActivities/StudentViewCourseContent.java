@@ -113,7 +113,7 @@ public class StudentViewCourseContent extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Examination":
-                StudentViewExamination studentViewExamination = new StudentViewExamination();
+                StudentViewExamination studentViewExamination = new StudentViewExamination(studentID);
                 studentViewExamination.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -126,7 +126,7 @@ public class StudentViewCourseContent extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Message":
-                StudentViewMessages studentViewMessages = new StudentViewMessages();
+                StudentViewMessages studentViewMessages = new StudentViewMessages(studentID);
                 studentViewMessages.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -139,7 +139,7 @@ public class StudentViewCourseContent extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Settings":
-                StudentViewSettings studentViewSettings = new StudentViewSettings();
+                StudentViewSettings studentViewSettings = new StudentViewSettings(studentID);
                 studentViewSettings.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {

@@ -14,6 +14,7 @@ AdminActivities\CommonClasses\CourseIDLoader.class
 LoginFrames\StudentForgotPassword$11.class
 AdminActivities\AdminViewMessage.class
 LoginFrames\AdminForgotPassword$5.class
+StudentActivities\CommonClasses\ContentStatusRetriever.class
 LoginFrames\AdminForgotPassword.class
 AdminActivities\AdminViewCourseContent$3.class
 LecturerActivities\LecturerViewTimetable$2.class
@@ -37,6 +38,7 @@ AdminActivities\AdminViewTimetable$1.class
 CommonClasses\DynamicSlider.class
 StudentActivities\StudentDashboard$1.class
 LecturerActivities\LecturerViewExamination$5.class
+StudentActivities\CommonClasses\ResultRetriever.class
 LoginFrames\LecturerLogin$8.class
 AdminActivities\CommonClasses\TimetableSearchByCourse.class
 AdminActivities\AdminViewLecturerRegister$1.class
@@ -47,6 +49,7 @@ AdminActivities\AdminViewStudent$5.class
 AdminActivities\AdminDashboard$1.class
 AdminActivities\CommonClasses\SubjectLoader.class
 LoginFrames\Home$5.class
+StudentActivities\CommonClasses\TimetableRetriever.class
 StudentActivities\StudentViewExamination$2.class
 AdminActivities\CommonClasses\StudentCountByCourse.class
 StudentActivities\StudentViewTimetable$1.class
@@ -117,7 +120,6 @@ AdminActivities\AdminViewStudentRegister$6.class
 AdminActivities\CommonClasses\UpdateSubjectStatus.class
 AdminActivities\AdminViewStudent$10.class
 LoginFrames\LecturerForgotPassword$3.class
-StudentActivities\StudentViewSettings$3.class
 LecturerActivities\LecturerViewCourseContent$6.class
 LecturerActivities\LecturerViewMessages$2.class
 LoginFrames\StudentForgotPassword$4.class
@@ -197,12 +199,10 @@ LoginFrames\StudentForgotPassword$2.class
 LecturerActivities\LecturerViewTimetable$4.class
 LecturerActivities\LecturerViewExamination$2.class
 AdminActivities\AdminViewLecturerRegister.class
-AdminActivities\AdminViewSettings$3.class
 StudentActivities\StudentViewCourseContent$2.class
 AdminActivities\AdminViewLecturer$2.class
 AdminActivities\AdminViewTimetable.class
 LoginFrames\LecturerForgotPassword$5.class
-StudentActivities\StudentViewMessages$3.class
 AdminActivities\AdminViewCourseContent.class
 AdminActivities\AdminViewStudent$1.class
 AdminActivities\CommonClasses\StudentRegistration.class

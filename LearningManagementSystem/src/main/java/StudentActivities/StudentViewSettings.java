@@ -24,7 +24,7 @@ public class StudentViewSettings extends javax.swing.JFrame {
     private final DrawerController drawer;
     String studentID;
 
-    public StudentViewSettings() {
+    public StudentViewSettings(String studentID) {
         initComponents();
 
         this.studentID = studentID;
@@ -32,6 +32,9 @@ public class StudentViewSettings extends javax.swing.JFrame {
         
         String MenuColored = "src\\main\\java\\StudentActivities\\Icons\\MenuColored.png";
         btn_Menu.setIcon(ImageResizer.resizeImage(MenuColored, 35, 35));
+        
+        String AdminBanner = "src\\main\\java\\LoginFrames\\Images\\Error.png";
+        lbl_lecturerLoginImage.setIcon(ImageResizer.resizeImage(AdminBanner, 400, 400));
 
         drawer = Drawer.newDrawer(this)
                 .headerHeight(100)
@@ -102,7 +105,7 @@ public class StudentViewSettings extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Examination":
-                StudentViewExamination studentViewExamination = new StudentViewExamination();
+                StudentViewExamination studentViewExamination = new StudentViewExamination(studentID);
                 studentViewExamination.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -115,7 +118,7 @@ public class StudentViewSettings extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Message":
-                StudentViewMessages studentViewMessages = new StudentViewMessages();
+                StudentViewMessages studentViewMessages = new StudentViewMessages(studentID);
                 studentViewMessages.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -128,7 +131,7 @@ public class StudentViewSettings extends javax.swing.JFrame {
                 // Already on the Dashboard, do nothing or handle accordingly
                 break;
             case "Settings":
-                StudentViewSettings studentViewSettings = new StudentViewSettings();
+                StudentViewSettings studentViewSettings = new StudentViewSettings(studentID);
                 studentViewSettings.setVisible(true);
                 this.hide();
                 if (drawer.isShow()) {
@@ -170,10 +173,9 @@ public class StudentViewSettings extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         lbl_studentID = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         btn_Menu = new javax.swing.JLabel();
+        lbl_lecturerLoginImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -182,38 +184,9 @@ public class StudentViewSettings extends javax.swing.JFrame {
 
         lbl_studentID.setText("StudentID");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Subject", "Lecturer", "Status"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-
         jLabel4.setFont(new java.awt.Font("Calisto MT", 1, 24)); // NOI18N
         jLabel4.setText("Course Content");
 
-        btn_Menu.setIcon(new javax.swing.ImageIcon("C:\\Users\\chand\\OneDrive\\Desktop\\GitHub Clones\\Learning-Management-System-using-Java\\LearningManagementSystem\\src\\main\\java\\StudentActivities\\Icons\\MenuColored.png")); // NOI18N
         btn_Menu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_Menu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -240,10 +213,12 @@ public class StudentViewSettings extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel2)
                         .addGap(77, 77, 77))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(198, 198, 198)
+                .addComponent(lbl_lecturerLoginImage, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,9 +234,9 @@ public class StudentViewSettings extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(lbl_lecturerLoginImage, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -307,7 +282,7 @@ public class StudentViewSettings extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StudentViewSettings().setVisible(true);
+                new StudentViewSettings("").setVisible(true);
             }
         });
     }
@@ -316,8 +291,7 @@ public class StudentViewSettings extends javax.swing.JFrame {
     private javax.swing.JLabel btn_Menu;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lbl_lecturerLoginImage;
     private javax.swing.JLabel lbl_studentID;
     // End of variables declaration//GEN-END:variables
 }

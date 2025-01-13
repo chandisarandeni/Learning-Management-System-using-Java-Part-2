@@ -52,9 +52,12 @@ C:\Users\chand\OneDrive\Desktop\GitHub Clones\Learning-Management-System-using-J
 C:\Users\chand\OneDrive\Desktop\GitHub Clones\Learning-Management-System-using-Java-Part-2\LearningManagementSystem\src\main\java\LoginFrames\LecturerForgotPassword.java
 C:\Users\chand\OneDrive\Desktop\GitHub Clones\Learning-Management-System-using-Java-Part-2\LearningManagementSystem\src\main\java\LoginFrames\LecturerLogin.java
 C:\Users\chand\OneDrive\Desktop\GitHub Clones\Learning-Management-System-using-Java-Part-2\LearningManagementSystem\src\main\java\LoginFrames\StudentForgotPassword.java
+C:\Users\chand\OneDrive\Desktop\GitHub Clones\Learning-Management-System-using-Java-Part-2\LearningManagementSystem\src\main\java\StudentActivities\CommonClasses\ContentStatusRetriever.java
+C:\Users\chand\OneDrive\Desktop\GitHub Clones\Learning-Management-System-using-Java-Part-2\LearningManagementSystem\src\main\java\StudentActivities\CommonClasses\ResultRetriever.java
 C:\Users\chand\OneDrive\Desktop\GitHub Clones\Learning-Management-System-using-Java-Part-2\LearningManagementSystem\src\main\java\StudentActivities\CommonClasses\StudentCourseContentLoader.java
 C:\Users\chand\OneDrive\Desktop\GitHub Clones\Learning-Management-System-using-Java-Part-2\LearningManagementSystem\src\main\java\StudentActivities\CommonClasses\StudentIDRetriever.java
 C:\Users\chand\OneDrive\Desktop\GitHub Clones\Learning-Management-System-using-Java-Part-2\LearningManagementSystem\src\main\java\StudentActivities\CommonClasses\StudentTimetableLoader.java
+C:\Users\chand\OneDrive\Desktop\GitHub Clones\Learning-Management-System-using-Java-Part-2\LearningManagementSystem\src\main\java\StudentActivities\CommonClasses\TimetableRetriever.java
 C:\Users\chand\OneDrive\Desktop\GitHub Clones\Learning-Management-System-using-Java-Part-2\LearningManagementSystem\src\main\java\StudentActivities\StudentDashboard.java
 C:\Users\chand\OneDrive\Desktop\GitHub Clones\Learning-Management-System-using-Java-Part-2\LearningManagementSystem\src\main\java\StudentActivities\StudentViewCourseContent.java
 C:\Users\chand\OneDrive\Desktop\GitHub Clones\Learning-Management-System-using-Java-Part-2\LearningManagementSystem\src\main\java\StudentActivities\StudentViewExamination.java
