@@ -51,6 +51,8 @@ public class StudentViewSettings extends javax.swing.JFrame {
                 .space(100)
                 .addChild(createDrawerItem("Logout"))
                 .build();
+        
+        lbl_studentID.setVisible(false);
     }
 
     private DrawerItem createDrawerItem(String title) {

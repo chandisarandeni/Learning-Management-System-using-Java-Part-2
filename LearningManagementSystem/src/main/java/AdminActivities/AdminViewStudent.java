@@ -89,6 +89,7 @@ public class AdminViewStudent extends javax.swing.JFrame {
         txt_studentEmail.setEditable(false);
         txt_studentAddress.setEditable(false);
 
+        lbl_adminUsername.setVisible(false);
     }
 
     private DrawerItem createDrawerItem(String title) {

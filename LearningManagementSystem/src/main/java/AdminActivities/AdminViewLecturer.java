@@ -77,6 +77,8 @@ public class AdminViewLecturer extends javax.swing.JFrame {
         txt_lecturerNIC.setEditable(false);
         txt_lecturerContact.setEditable(false);
         txt_lecturerEmail.setEditable(false);
+        
+        lbl_adminUsername.setVisible(false);
 
     }
 

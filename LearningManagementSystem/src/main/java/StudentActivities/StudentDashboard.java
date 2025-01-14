@@ -60,6 +60,7 @@ public class StudentDashboard extends javax.swing.JFrame {
         TimetableRetriever sretriever = new TimetableRetriever();
         sretriever.retrieveTimetable(studentID, lbl_currentDate, lbl_startTime, lbl_Subject, lbl_lectureHall);
 
+        lbl_studentID.setVisible(false);
     }
 
     private DrawerItem createDrawerItem(String title) {

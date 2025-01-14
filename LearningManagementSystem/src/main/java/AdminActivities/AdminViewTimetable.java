@@ -58,6 +58,8 @@ public class AdminViewTimetable extends javax.swing.JFrame {
         
         RecentTimetableLoader.loadRecentTimetables(tbl_Timetable);
         CourseIDLoader.loadCourseIDs(comboBox_courseID);
+        
+        lbl_adminUsername.setVisible(false);
     }
 
     private DrawerItem createDrawerItem(String title) {

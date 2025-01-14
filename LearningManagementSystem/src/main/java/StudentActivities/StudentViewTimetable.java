@@ -54,6 +54,7 @@ public class StudentViewTimetable extends javax.swing.JFrame {
 
         StudentTimetableLoader.loadTimetable(lbl_studentID.getText(), tbl_Timetable);
 
+        lbl_studentID.setVisible(false);
     }
 
     private DrawerItem createDrawerItem(String title) {

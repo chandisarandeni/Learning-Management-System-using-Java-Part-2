@@ -58,6 +58,8 @@ public class AdminViewMessage extends javax.swing.JFrame {
 
         // Optionally, display the admin username in the dashboard
         lbl_adminUsername.setText(adminUsername);
+        
+        lbl_adminUsername.setVisible(false);
     }
     
     private DrawerItem createDrawerItem(String title) {

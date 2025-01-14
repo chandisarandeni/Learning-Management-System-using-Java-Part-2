@@ -74,6 +74,8 @@ public class AdminViewExamination extends javax.swing.JFrame {
         lbl_adminUsername.setText(adminUsername);
         lbl_showStudentName.setText("");
         lbl_showStudentID.setText("");
+        
+        lbl_adminUsername.setVisible(false);
     }
 
     private DrawerItem createDrawerItem(String title) {

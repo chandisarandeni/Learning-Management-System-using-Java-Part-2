@@ -55,6 +55,7 @@ public class StudentViewExamination extends javax.swing.JFrame {
         ResultRetriever retriever = new ResultRetriever();
         retriever.retrieveResults(studentID, tbl_Results); // Populate JTable
 
+        lbl_studentID.setVisible(false);
     }
 
     private DrawerItem createDrawerItem(String title) {

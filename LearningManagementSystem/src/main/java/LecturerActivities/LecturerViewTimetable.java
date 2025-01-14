@@ -60,6 +60,8 @@ public class LecturerViewTimetable extends javax.swing.JFrame {
                 .build();
 
         CourseDataLoader.loadCourseIDs(comboBox_CourseID);
+        
+        lbl_lecturerID.setVisible(false);
     }
 
     private DrawerItem createDrawerItem(String title) {

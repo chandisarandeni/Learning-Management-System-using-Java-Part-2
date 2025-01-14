@@ -67,6 +67,7 @@ public class LecturerViewCourseContent extends javax.swing.JFrame {
             }
         });
 
+        lbl_lecturerID.setVisible(false);
     }
 
     private DrawerItem createDrawerItem(String title) {

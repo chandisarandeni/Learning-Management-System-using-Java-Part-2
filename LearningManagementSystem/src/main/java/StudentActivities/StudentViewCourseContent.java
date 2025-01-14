@@ -59,6 +59,7 @@ public class StudentViewCourseContent extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please select a valid student.");
         }
 
+        lbl_studentID.setVisible(false);
     }
 
     private DrawerItem createDrawerItem(String title) {

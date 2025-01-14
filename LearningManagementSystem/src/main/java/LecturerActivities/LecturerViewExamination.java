@@ -56,6 +56,8 @@ public class LecturerViewExamination extends javax.swing.JFrame {
                 .build();
         
         CourseIDLoader.loadCourseIDs(comboBox_courseID);
+        
+        lbl_lecturerID.setVisible(false);
     }
 
     private DrawerItem createDrawerItem(String title) {

@@ -66,6 +66,7 @@ public class AdminViewStudentRegister extends javax.swing.JFrame {
         btn_Register.setFocusable(false);
         btn_Cancel.setFocusable(false);
 
+        lbl_adminUsername.setVisible(false);
     }
 
     private DrawerItem createDrawerItem(String title) {

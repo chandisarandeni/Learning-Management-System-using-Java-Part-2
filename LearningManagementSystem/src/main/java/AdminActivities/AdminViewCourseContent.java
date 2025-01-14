@@ -64,6 +64,8 @@ public class AdminViewCourseContent extends javax.swing.JFrame {
 
         SubjectDataRetriever.loadSubjectData(tbl_moduleAndStatus);
         CourseIDLoader.loadCourseIDs(comboBox_courseID);
+        
+        lbl_adminUsername.setVisible(false);
     }
 
     private DrawerItem createDrawerItem(String title) {

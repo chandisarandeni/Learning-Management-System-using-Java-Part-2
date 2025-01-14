@@ -55,6 +55,8 @@ public class LecturerViewSettings extends javax.swing.JFrame {
                 .space(100)
                 .addChild(createDrawerItem("Logout"))
                 .build();
+        
+        lbl_lecturerID.setVisible(false);
     }
 
     private DrawerItem createDrawerItem(String title) {
