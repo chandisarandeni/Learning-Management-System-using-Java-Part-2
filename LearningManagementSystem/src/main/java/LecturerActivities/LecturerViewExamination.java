@@ -12,10 +12,15 @@ import StudentActivities.StudentViewCourseContent;
 import StudentActivities.StudentViewTimetable;
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javaswingdev.drawer.Drawer;
 import javaswingdev.drawer.DrawerController;
 import javaswingdev.drawer.DrawerItem;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 /**
@@ -32,7 +37,7 @@ public class LecturerViewExamination extends javax.swing.JFrame {
 
     public LecturerViewExamination(String lecturerID) {
         initComponents();
-        
+
         this.lecturerID = lecturerID;
         lbl_lecturerID.setText(lecturerID);
 
@@ -54,9 +59,9 @@ public class LecturerViewExamination extends javax.swing.JFrame {
                 .space(100)
                 .addChild(createDrawerItem("Logout"))
                 .build();
-        
+
         CourseIDLoader.loadCourseIDs(comboBox_courseID);
-        
+
         lbl_lecturerID.setVisible(false);
     }
 
@@ -182,33 +187,38 @@ public class LecturerViewExamination extends javax.swing.JFrame {
         lbl_lecturerID = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btn_Menu = new javax.swing.JLabel();
-        btn_Verify2 = new javax.swing.JButton();
         comboBox_courseID = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        comboBox_Subject = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        btn_Verify = new javax.swing.JButton();
+        btnSubmit = new javax.swing.JButton();
         btn_Verify1 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_studentMarks = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        comboBox_studentID = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
-        btn_Verify3 = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
         btn_Verify4 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txt_updateMarks = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        comboBox_SubjectUpdate = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        comboBox_studentIDUpdate = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximizedBounds(new java.awt.Rectangle(0, 0, 885, 525));
+        setMaximumSize(new java.awt.Dimension(885, 525));
+        setMinimumSize(new java.awt.Dimension(885, 525));
 
         jLabel2.setFont(new java.awt.Font("Calisto MT", 1, 24)); // NOI18N
         jLabel2.setText("_________________________________________________________");
@@ -225,20 +235,12 @@ public class LecturerViewExamination extends javax.swing.JFrame {
             }
         });
 
-        btn_Verify2.setBackground(new java.awt.Color(0, 0, 0));
-        btn_Verify2.setFont(new java.awt.Font("Calisto MT", 1, 15)); // NOI18N
-        btn_Verify2.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Verify2.setText("Refresh");
-        btn_Verify2.setAlignmentY(0.0F);
-        btn_Verify2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_Verify2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_Verify2.addActionListener(new java.awt.event.ActionListener() {
+        comboBox_courseID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--" }));
+        comboBox_courseID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Verify2ActionPerformed(evt);
+                comboBox_courseIDActionPerformed(evt);
             }
         });
-
-        comboBox_courseID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--" }));
 
         jLabel6.setFont(new java.awt.Font("Calisto MT", 1, 14)); // NOI18N
         jLabel6.setText(":");
@@ -248,21 +250,26 @@ public class LecturerViewExamination extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Calisto MT", 1, 14)); // NOI18N
         jLabel7.setText(":");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--" }));
+        comboBox_Subject.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--" }));
+        comboBox_Subject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBox_SubjectActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Calisto MT", 1, 14)); // NOI18N
         jLabel8.setText("Subject");
 
-        btn_Verify.setBackground(new java.awt.Color(0, 0, 0));
-        btn_Verify.setFont(new java.awt.Font("Calisto MT", 1, 15)); // NOI18N
-        btn_Verify.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Verify.setText("Submit");
-        btn_Verify.setAlignmentY(0.0F);
-        btn_Verify.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_Verify.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_Verify.addActionListener(new java.awt.event.ActionListener() {
+        btnSubmit.setBackground(new java.awt.Color(0, 0, 0));
+        btnSubmit.setFont(new java.awt.Font("Calisto MT", 1, 15)); // NOI18N
+        btnSubmit.setForeground(new java.awt.Color(255, 255, 255));
+        btnSubmit.setText("Submit");
+        btnSubmit.setAlignmentY(0.0F);
+        btnSubmit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSubmit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_VerifyActionPerformed(evt);
+                btnSubmitActionPerformed(evt);
             }
         });
 
@@ -288,7 +295,12 @@ public class LecturerViewExamination extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Calisto MT", 1, 14)); // NOI18N
         jLabel9.setText("Student ID");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--" }));
+        comboBox_studentID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--" }));
+        comboBox_studentID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBox_studentIDActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Calisto MT", 1, 14)); // NOI18N
         jLabel10.setText(":");
@@ -302,50 +314,54 @@ public class LecturerViewExamination extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel16))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(36, 36, 36)
+                                .addComponent(jLabel7))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel10)))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                                .addComponent(btn_Verify1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboBox_Subject, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboBox_studentID, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel16)
                         .addGap(36, 36, 36)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel15)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel10)))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btn_Verify, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                        .addComponent(btn_Verify1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1)
-                    .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                        .addComponent(jLabel15)
+                        .addGap(28, 28, 28)
+                        .addComponent(txt_studentMarks)))
+                .addGap(21, 21, 21))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBox_Subject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBox_studentID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
                     .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(jLabel15)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(txt_studentMarks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_Verify)
+                    .addComponent(btnSubmit)
                     .addComponent(btn_Verify1))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel5.setFont(new java.awt.Font("Calisto MT", 1, 14)); // NOI18N
@@ -353,58 +369,16 @@ public class LecturerViewExamination extends javax.swing.JFrame {
 
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "StudentID", "Subject", "Grade"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(20);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(80);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(10);
-        }
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
-        );
-
-        jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-
-        btn_Verify3.setBackground(new java.awt.Color(0, 0, 0));
-        btn_Verify3.setFont(new java.awt.Font("Calisto MT", 1, 15)); // NOI18N
-        btn_Verify3.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Verify3.setText("Update");
-        btn_Verify3.setAlignmentY(0.0F);
-        btn_Verify3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_Verify3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_Verify3.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setBackground(new java.awt.Color(0, 0, 0));
+        btnUpdate.setFont(new java.awt.Font("Calisto MT", 1, 15)); // NOI18N
+        btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
+        btnUpdate.setText("Update");
+        btnUpdate.setAlignmentY(0.0F);
+        btnUpdate.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnUpdate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Verify3ActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
 
@@ -427,37 +401,89 @@ public class LecturerViewExamination extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Calisto MT", 1, 14)); // NOI18N
         jLabel18.setText("Marks");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel18)
-                .addGap(40, 40, 40)
-                .addComponent(jLabel17)
-                .addGap(29, 29, 29)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(btn_Verify3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                        .addComponent(btn_Verify4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField2))
-                .addContainerGap(28, Short.MAX_VALUE))
+        jLabel11.setFont(new java.awt.Font("Calisto MT", 1, 14)); // NOI18N
+        jLabel11.setText(":");
+
+        jLabel12.setFont(new java.awt.Font("Calisto MT", 1, 14)); // NOI18N
+        jLabel12.setText(":");
+
+        comboBox_SubjectUpdate.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--" }));
+        comboBox_SubjectUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBox_SubjectUpdateActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setFont(new java.awt.Font("Calisto MT", 1, 14)); // NOI18N
+        jLabel13.setText("Subject");
+
+        jLabel14.setFont(new java.awt.Font("Calisto MT", 1, 14)); // NOI18N
+        jLabel14.setText("Student ID");
+
+        comboBox_studentIDUpdate.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--" }));
+        comboBox_studentIDUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBox_studentIDUpdateActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addGap(36, 36, 36)
+                                .addComponent(jLabel12))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel11)))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comboBox_SubjectUpdate, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboBox_studentIDUpdate, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel17)
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_Verify4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_updateMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboBox_SubjectUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel12))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboBox_studentIDUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel11))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(jLabel17)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_Verify3)
+                    .addComponent(txt_updateMarks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUpdate)
                     .addComponent(btn_Verify4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(62, 62, 62))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -465,6 +491,14 @@ public class LecturerViewExamination extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addGap(36, 36, 36)
+                .addComponent(jLabel6)
+                .addGap(29, 29, 29)
+                .addComponent(comboBox_courseID, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -474,33 +508,17 @@ public class LecturerViewExamination extends javax.swing.JFrame {
                         .addComponent(lbl_lecturerID)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(224, 224, 224)
-                                .addComponent(jLabel5)
-                                .addGap(36, 36, 36)
-                                .addComponent(jLabel6)
-                                .addGap(29, 29, 29)
-                                .addComponent(comboBox_courseID, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(173, 173, 173))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(jLabel2))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(btn_Verify2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(20, 20, 20)
-                                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                        .addGap(77, 77, 77))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(314, 314, 314)
-                        .addComponent(jLabel4)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2))))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -510,27 +528,22 @@ public class LecturerViewExamination extends javax.swing.JFrame {
                         .addGap(9, 9, 9)
                         .addComponent(btn_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(lbl_lecturerID))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_lecturerID)
+                            .addComponent(jLabel2)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)))
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboBox_courseID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
-                .addGap(18, 18, 18)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_Verify2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
 
         pack();
@@ -546,25 +559,332 @@ public class LecturerViewExamination extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_MenuMouseClicked
 
-    private void btn_Verify2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Verify2ActionPerformed
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_Verify2ActionPerformed
+        btnSubmit.addActionListener(e -> {
+            // Get selected values from combo boxes
+            String selectedCourseID = (String) comboBox_courseID.getSelectedItem();
+            String selectedSubject = (String) comboBox_Subject.getSelectedItem();
+            String selectedStudentID = (String) comboBox_studentID.getSelectedItem();
 
-    private void btn_VerifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VerifyActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_VerifyActionPerformed
+            // Get the entered marks from the text field
+            String studentMarksText = txt_studentMarks.getText();
+
+            // Validate and parse marks
+            int marks = 0;
+            try {
+                marks = Integer.parseInt(studentMarksText);
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Please enter valid marks.");
+                return;
+            }
+
+            // Determine grade and GPA points based on marks
+            String grade;
+            double gpaPoints;
+
+            if (marks > 80) {
+                grade = "A+";
+                gpaPoints = 4.0;
+            } else if (marks > 70) {
+                grade = "A";
+                gpaPoints = 3.7;
+            } else if (marks > 60) {
+                grade = "B+";
+                gpaPoints = 3.3;
+            } else if (marks > 50) {
+                grade = "B";
+                gpaPoints = 3.0;
+            } else if (marks > 40) {
+                grade = "C";
+                gpaPoints = 2.7;
+            } else {
+                grade = "F";
+                gpaPoints = 0.0;
+            }
+
+            String DB_URL = "jdbc:mysql://localhost:3306/LMS"; // Update with your database details
+            String DB_USER = "root";
+            String DB_PASSWORD = "";
+            String query = "INSERT INTO Examination (studentID, subjectName, Marks, Grade, GPA_Points) VALUES (?, ?, ?, ?, ?)";
+
+            try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+                // Set values for the prepared statement
+                preparedStatement.setString(1, selectedStudentID);
+                preparedStatement.setString(2, selectedSubject);
+                preparedStatement.setInt(3, marks);
+                preparedStatement.setString(4, grade);
+                preparedStatement.setDouble(5, gpaPoints);
+
+                // Execute the insertion
+                int rowsAffected = preparedStatement.executeUpdate();
+                if (rowsAffected > 0) {
+                    JOptionPane.showMessageDialog(null, "Examination data submitted successfully.");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Failed to submit examination data.");
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error occurred while submitting data.");
+            }
+        });
+
+
+    }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btn_Verify1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Verify1ActionPerformed
         // TODO add your handling code here:
+        LecturerDashboard lecturerDashboard = new LecturerDashboard(lecturerID);
+        lecturerDashboard.setVisible(true);
+        this.hide();
     }//GEN-LAST:event_btn_Verify1ActionPerformed
 
-    private void btn_Verify3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Verify3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_Verify3ActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        btnUpdate.addActionListener(e -> {
+            String selectedSubject = (String) comboBox_SubjectUpdate.getSelectedItem();
+            String selectedStudentID = (String) comboBox_studentIDUpdate.getSelectedItem();
+            String updatedMarksText = txt_updateMarks.getText();
+
+            // Validate that subject, student ID, and marks are selected/entered
+            if ("--".equals(selectedSubject) || "--".equals(selectedStudentID)) {
+                JOptionPane.showMessageDialog(null, "Please select a valid subject and student ID.");
+                return;
+            }
+
+            // Validate the marks input
+            int updatedMarks;
+            try {
+                updatedMarks = Integer.parseInt(updatedMarksText);
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Please enter valid marks.");
+                return;
+            }
+
+            // Calculate GPA based on updated marks
+            String grade = "";
+            double gpaPoints = 0.0;
+
+            if (updatedMarks >= 80) {
+                grade = "A+";
+                gpaPoints = 4.0;
+            } else if (updatedMarks >= 70) {
+                grade = "A";
+                gpaPoints = 4.0;
+            } else if (updatedMarks >= 60) {
+                grade = "B+";
+                gpaPoints = 3.5;
+            } else if (updatedMarks >= 50) {
+                grade = "B";
+                gpaPoints = 3.0;
+            } else if (updatedMarks >= 40) {
+                grade = "C";
+                gpaPoints = 2.0;
+            } else {
+                grade = "F";
+                gpaPoints = 0.0;
+            }
+
+            String DB_URL = "jdbc:mysql://localhost:3306/LMS"; // Update with your database details
+            String DB_USER = "root";
+            String DB_PASSWORD = "";
+            String updateQuery = "UPDATE Examination SET Marks = ?, Grade = ?, GPA_Points = ? WHERE studentID = ? AND subjectName = ?";
+
+            try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD); PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
+
+                // Set values for the prepared statement
+                preparedStatement.setInt(1, updatedMarks);
+                preparedStatement.setString(2, grade);
+                preparedStatement.setDouble(3, gpaPoints);
+                preparedStatement.setString(4, selectedStudentID);
+                preparedStatement.setString(5, selectedSubject);
+
+                // Execute the update
+                int rowsAffected = preparedStatement.executeUpdate();
+
+                if (rowsAffected > 0) {
+                    JOptionPane.showMessageDialog(null, "Marks and GPA updated successfully.");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Failed to update marks and GPA. Please check the data.");
+                }
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error occurred while updating marks and GPA.");
+            }
+        });
+
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btn_Verify4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Verify4ActionPerformed
         // TODO add your handling code here:
+        LecturerDashboard lecturerDashboard = new LecturerDashboard(lecturerID);
+        lecturerDashboard.setVisible(true);
+        this.hide();
     }//GEN-LAST:event_btn_Verify4ActionPerformed
+
+    private void comboBox_courseIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBox_courseIDActionPerformed
+        comboBox_courseID.addActionListener(e -> {
+            String selectedCourseID = (String) comboBox_courseID.getSelectedItem();
+
+            // Clear previous items
+            comboBox_Subject.removeAllItems();
+            comboBox_SubjectUpdate.removeAllItems();
+            comboBox_studentID.removeAllItems();
+            comboBox_studentIDUpdate.removeAllItems();
+
+            // Add default placeholder item
+            comboBox_Subject.addItem("--");
+            comboBox_SubjectUpdate.addItem("--");
+            comboBox_studentID.addItem("--");
+            comboBox_studentIDUpdate.addItem("--");
+
+            String DB_URL = "jdbc:mysql://localhost:3306/LMS"; // Update with your database details
+            String DB_USER = "root";
+            String DB_PASSWORD = "";
+
+            // Query to get subjects
+            String subjectQuery = "SELECT subjectName FROM Subject WHERE courseID = ?";
+
+            // Query to get student IDs
+            String studentQuery = "SELECT studentID FROM Student WHERE courseID = ?";
+
+            try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+
+                // Load subjects into both combo boxes
+                try (PreparedStatement subjectPreparedStatement = connection.prepareStatement(subjectQuery)) {
+                    subjectPreparedStatement.setString(1, selectedCourseID);
+                    ResultSet subjectResultSet = subjectPreparedStatement.executeQuery();
+                    while (subjectResultSet.next()) {
+                        String subjectName = subjectResultSet.getString("subjectName");
+                        comboBox_Subject.addItem(subjectName); // Add subject to the first combo box
+                        comboBox_SubjectUpdate.addItem(subjectName); // Add subject to the second combo box
+                    }
+                }
+
+                // Load student IDs into both combo boxes
+                try (PreparedStatement studentPreparedStatement = connection.prepareStatement(studentQuery)) {
+                    studentPreparedStatement.setString(1, selectedCourseID);
+                    ResultSet studentResultSet = studentPreparedStatement.executeQuery();
+                    while (studentResultSet.next()) {
+                        String studentID = studentResultSet.getString("studentID");
+                        comboBox_studentID.addItem(studentID); // Add student ID to the first combo box
+                        comboBox_studentIDUpdate.addItem(studentID); // Add student ID to the second combo box
+                    }
+                }
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error occurred while fetching subjects and student IDs.");
+            }
+        });
+
+
+    }//GEN-LAST:event_comboBox_courseIDActionPerformed
+
+    private void comboBox_SubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBox_SubjectActionPerformed
+//        // TODO add your handling code here:
+//        comboBox_courseID.addActionListener(e -> {
+//            String selectedCourseID = (String) comboBox_courseID.getSelectedItem();
+//            comboBox_studentID.removeAllItems(); // Clear previous items
+//
+//            String DB_URL = "jdbc:mysql://localhost:3306/LMS"; // Update with your database details
+//            String DB_USER = "root";
+//            String DB_PASSWORD = "";
+//            String query = "SELECT studentID FROM Student WHERE courseID = ?";
+//
+//            try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+//
+//                preparedStatement.setString(1, selectedCourseID);
+//                ResultSet resultSet = preparedStatement.executeQuery();
+//
+//                while (resultSet.next()) {
+//                    comboBox_studentID.addItem(resultSet.getString("studentID"));
+//                }
+//            } catch (Exception ex) {
+//                ex.printStackTrace();
+//                JOptionPane.showMessageDialog(null, "Error occurred while fetching student IDs.");
+//            }
+//        });
+
+    }//GEN-LAST:event_comboBox_SubjectActionPerformed
+
+    private void comboBox_SubjectUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBox_SubjectUpdateActionPerformed
+//        // TODO add your handling code here:
+//        // TODO add your handling code here:
+//        comboBox_courseID.addActionListener(e -> {
+//            String selectedCourseID = (String) comboBox_courseID.getSelectedItem();
+//            comboBox_studentID.removeAllItems(); // Clear previous items
+//
+//            String DB_URL = "jdbc:mysql://localhost:3306/LMS"; // Update with your database details
+//            String DB_USER = "root";
+//            String DB_PASSWORD = "";
+//            String query = "SELECT studentID FROM Student WHERE courseID = ?";
+//
+//            try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+//
+//                preparedStatement.setString(1, selectedCourseID);
+//                ResultSet resultSet = preparedStatement.executeQuery();
+//
+//                while (resultSet.next()) {
+//                    comboBox_studentID.addItem(resultSet.getString("studentID"));
+//                }
+//            } catch (Exception ex) {
+//                ex.printStackTrace();
+//                JOptionPane.showMessageDialog(null, "Error occurred while fetching student IDs.");
+//            }
+//        });
+    }//GEN-LAST:event_comboBox_SubjectUpdateActionPerformed
+
+    private void comboBox_studentIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBox_studentIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBox_studentIDActionPerformed
+
+    private void comboBox_studentIDUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBox_studentIDUpdateActionPerformed
+        // TODO add your handling code here:
+        comboBox_studentIDUpdate.addActionListener(e -> {
+            loadMarks();
+        });
+        // Method to load marks based on selected student ID and subject
+    }//GEN-LAST:event_comboBox_studentIDUpdateActionPerformed
+
+    private void loadMarks() {
+        String selectedSubject = (String) comboBox_SubjectUpdate.getSelectedItem();
+        String selectedStudentID = (String) comboBox_studentIDUpdate.getSelectedItem();
+
+        // Check if both subject and student ID are selected
+        if ("--".equals(selectedSubject) || "--".equals(selectedStudentID)) {
+            txt_updateMarks.setText(""); // Clear marks if either is not selected
+            return;
+        }
+
+        String DB_URL = "jdbc:mysql://localhost:3306/LMS"; // Update with your database details
+        String DB_USER = "root";
+        String DB_PASSWORD = "";
+        String query = "SELECT Marks FROM Examination WHERE studentID = ? AND subjectName = ?";
+
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            // Set parameters for the query
+            preparedStatement.setString(1, selectedStudentID);
+            preparedStatement.setString(2, selectedSubject);
+
+            // Execute the query
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                // If marks are found, set the value in the text field
+                int marks = resultSet.getInt("Marks");
+                txt_updateMarks.setText(String.valueOf(marks));
+            } else {
+                // If no marks are found for the selected student and subject
+                txt_updateMarks.setText(""); // Clear the text field
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error occurred while fetching marks.");
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -602,16 +922,21 @@ public class LecturerViewExamination extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSubmit;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel btn_Menu;
-    private javax.swing.JButton btn_Verify;
     private javax.swing.JButton btn_Verify1;
-    private javax.swing.JButton btn_Verify2;
-    private javax.swing.JButton btn_Verify3;
     private javax.swing.JButton btn_Verify4;
+    private javax.swing.JComboBox<String> comboBox_Subject;
+    private javax.swing.JComboBox<String> comboBox_SubjectUpdate;
     private javax.swing.JComboBox<String> comboBox_courseID;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> comboBox_studentID;
+    private javax.swing.JComboBox<String> comboBox_studentIDUpdate;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -625,11 +950,8 @@ public class LecturerViewExamination extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lbl_lecturerID;
+    private javax.swing.JTextField txt_studentMarks;
+    private javax.swing.JTextField txt_updateMarks;
     // End of variables declaration//GEN-END:variables
 }

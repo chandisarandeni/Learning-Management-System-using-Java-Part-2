@@ -311,7 +311,7 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         lbl_totalStudentCount.setFont(new java.awt.Font("Calisto MT", 1, 24)); // NOI18N
         lbl_totalStudentCount.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_totalStudentCount.setText("99");
+        lbl_totalStudentCount.setText("1");
         lbl_totalStudentCount.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout pnl_totalStudentLayout = new javax.swing.GroupLayout(pnl_totalStudent);
@@ -322,15 +322,14 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE)
                 .addGroup(pnl_totalStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_totalStudentLayout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_totalStudentLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(14, 14, 14))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_totalStudentLayout.createSequentialGroup()
-                        .addComponent(lbl_totalStudentCount, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42))
-                    .addGroup(pnl_totalStudentLayout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addComponent(lbl_totalStudentCount)
+                        .addGap(52, 52, 52))))
         );
         pnl_totalStudentLayout.setVerticalGroup(
             pnl_totalStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -357,17 +356,13 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         lbl_totalLecturerCount.setFont(new java.awt.Font("Calisto MT", 1, 24)); // NOI18N
         lbl_totalLecturerCount.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_totalLecturerCount.setText("25");
+        lbl_totalLecturerCount.setText("1");
         lbl_totalLecturerCount.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(lbl_totalLecturerCount, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap(16, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -376,6 +371,10 @@ public class AdminDashboard extends javax.swing.JFrame {
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel7))
                 .addGap(14, 14, 14))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(lbl_totalLecturerCount)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

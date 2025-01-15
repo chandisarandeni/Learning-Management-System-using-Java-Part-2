@@ -686,32 +686,42 @@ public class AdminViewStudent extends javax.swing.JFrame {
 
     private void btn_Delete2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Delete2MouseClicked
         // TODO add your handling code here:
-        // Database connection details
+// Database connection details
         String DB_URL = "jdbc:mysql://localhost:3306/LMS"; // Your database name
         String DB_USER = "root"; // Your database username
         String DB_PASSWORD = ""; // Your database password
 
         String query = "DELETE FROM Student WHERE studentID = ?";
 
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try {
+            // Ask for confirmation
+            int confirmation = JOptionPane.showConfirmDialog(
+                    null,
+                    "Are you sure you want to delete this student?",
+                    "Confirm Delete",
+                    JOptionPane.YES_NO_OPTION
+            );
 
-            // Set the student ID parameter
-            preparedStatement.setString(1, txt_getStudentID.getText());
+            if (confirmation == JOptionPane.YES_OPTION) {
+                try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-            // Execute the delete
-            int rowsAffected = preparedStatement.executeUpdate();
-            if (rowsAffected > 0) {
-                JOptionPane.showMessageDialog(null, "Student deleted successfully.");
-                AdminViewStudent adminViewStudent = new AdminViewStudent(adminUsername);
-                adminViewStudent.setVisible(true);
-                this.hide();
-            } else {
-                JOptionPane.showMessageDialog(null, "Failed to delete student.");
-                AdminViewStudent adminViewStudent = new AdminViewStudent(adminUsername);
-                adminViewStudent.setVisible(true);
-                this.hide();
+                    // Set the student ID parameter
+                    preparedStatement.setString(1, txt_getStudentID.getText());
+
+                    // Execute the delete
+                    int rowsAffected = preparedStatement.executeUpdate();
+                    if (rowsAffected > 0) {
+                        JOptionPane.showMessageDialog(null, "Student deleted successfully.");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Failed to delete student.");
+                    }
+
+                    // Return to admin view
+                    AdminViewStudent adminViewStudent = new AdminViewStudent(adminUsername);
+                    adminViewStudent.setVisible(true);
+                    this.hide();
+                }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error occurred while deleting student.");
