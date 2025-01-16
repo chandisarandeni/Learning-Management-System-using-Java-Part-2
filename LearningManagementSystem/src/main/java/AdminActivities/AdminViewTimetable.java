@@ -281,7 +281,7 @@ public class AdminViewTimetable extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Calisto MT", 1, 24)); // NOI18N
-        jLabel4.setText("Lecture Timetable");
+        jLabel4.setText("Timetable");
 
         lbl_studentID.setText("LecturerID");
 
@@ -302,11 +302,12 @@ public class AdminViewTimetable extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                        .addComponent(jLabel2))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(277, 277, 277)
-                        .addComponent(jLabel4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(299, 299, 299)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(lbl_adminUsername)
                 .addGap(24, 24, 24))
             .addGroup(layout.createSequentialGroup()

@@ -1,0 +1,92 @@
+<!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
+<jasperReport name="Blank_A4_6" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f51cff62-a426-490f-8049-2357cec401f4">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL"/>
+	<query language="SQL"><![CDATA[SELECT *
+FROM Student]]></query>
+	<field name="studentID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="studentID"/>
+		<property name="com.jaspersoft.studio.field.label" value="studentID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="student"/>
+	</field>
+	<field name="studentName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="studentName"/>
+		<property name="com.jaspersoft.studio.field.label" value="studentName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="student"/>
+	</field>
+	<field name="studentNIC" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="studentNIC"/>
+		<property name="com.jaspersoft.studio.field.label" value="studentNIC"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="student"/>
+	</field>
+	<field name="studentContact" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="studentContact"/>
+		<property name="com.jaspersoft.studio.field.label" value="studentContact"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="student"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="79" splitType="Stretch">
+		<element kind="staticText" uuid="e59e01cd-e8f4-42ae-8e75-eb015a6f29df" x="95" y="0" width="210" height="25" fontSize="19.0" bold="true">
+			<text><![CDATA[Reverston University]]></text>
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</element>
+		<element kind="staticText" uuid="e0a343ab-5a37-45e2-91e6-7c755e772f3b" x="95" y="55" width="205" height="15">
+			<text><![CDATA[Phone : 0112 75 75 45]]></text>
+		</element>
+		<element kind="staticText" uuid="467ec9da-572e-4eff-ac23-5c98b89e690d" x="95" y="25" width="205" height="15">
+			<text><![CDATA[Vidya Mawatha,]]></text>
+		</element>
+		<element kind="staticText" uuid="6a5e08dc-ceb4-431d-adb9-16f8dd66b4a7" x="95" y="40" width="205" height="15">
+			<text><![CDATA[Colombo 07.]]></text>
+		</element>
+	</title>
+	<pageHeader height="35" splitType="Stretch">
+		<element kind="staticText" uuid="aaff448a-7066-4629-8883-5cbacd030492" x="180" y="5" width="210" height="25" fontSize="19.0" bold="true">
+			<text><![CDATA[Student Details Report]]></text>
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</element>
+	</pageHeader>
+	<columnHeader height="61" splitType="Stretch">
+		<element kind="staticText" uuid="3cac75ae-e00c-4927-b963-4c185644233c" x="0" y="31" width="141" height="30">
+			<text><![CDATA[Student ID]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5ec98d7a-c3bf-404e-ace9-6fc9ce712350"/>
+		</element>
+		<element kind="staticText" uuid="bfb15c15-e7c2-40e2-b698-3d7859549971" x="141" y="31" width="138" height="30">
+			<text><![CDATA[Student Name]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0510c68e-b32f-4f03-a5d8-f360ea64b4b4"/>
+		</element>
+		<element kind="staticText" uuid="77f7155f-33c3-422f-8e1c-bb9e9fc7a277" x="279" y="31" width="138" height="30">
+			<text><![CDATA[Student NIC]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bb00ace7-fd66-41e2-bb0b-b88b45d36907"/>
+		</element>
+		<element kind="staticText" uuid="b593dd22-8c19-4c98-81ea-8ccfa9ab06a3" x="417" y="31" width="138" height="30">
+			<text><![CDATA[Student Contact Number]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ce968cef-fc8d-4d5d-93c5-5103d37676cd"/>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<element kind="textField" uuid="281381e8-7287-43d2-b97f-dde51af6b3c9" x="0" y="0" width="141" height="30">
+				<expression><![CDATA[$F{studentID}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5ec98d7a-c3bf-404e-ace9-6fc9ce712350"/>
+			</element>
+			<element kind="textField" uuid="058f0a34-99c2-4e36-8798-fbe9cb2cbe53" x="141" y="0" width="138" height="30">
+				<expression><![CDATA[$F{studentName}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0510c68e-b32f-4f03-a5d8-f360ea64b4b4"/>
+			</element>
+			<element kind="textField" uuid="02094e0a-e107-4f03-9839-df6549809584" x="279" y="0" width="138" height="30">
+				<expression><![CDATA[$F{studentNIC}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bb00ace7-fd66-41e2-bb0b-b88b45d36907"/>
+			</element>
+			<element kind="textField" uuid="f100fad3-4e2e-40e9-a024-86f29011254c" x="417" y="0" width="138" height="30">
+				<expression><![CDATA[$F{studentContact}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ce968cef-fc8d-4d5d-93c5-5103d37676cd"/>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="45" splitType="Stretch"/>
+	<pageFooter height="54" splitType="Stretch"/>
+	<summary height="42" splitType="Stretch"/>
+</jasperReport>

@@ -39,6 +39,7 @@ AdminActivities\AdminViewTimetable$1.class
 CommonClasses\DynamicSlider.class
 StudentActivities\StudentDashboard$1.class
 LecturerActivities\LecturerViewExamination$5.class
+LecturerActivities\LecturerViewTimetableSchedule$4.class
 LecturerActivities\LecturerViewExamination$11.class
 StudentActivities\CommonClasses\ResultRetriever.class
 LoginFrames\LecturerLogin$8.class
@@ -120,6 +121,7 @@ StudentActivities\StudentViewCourseContent$3.class
 AdminActivities\AdminViewSettings$2.class
 LecturerActivities\LecturerViewTimetable.class
 AdminActivities\AdminViewStudentRegister$6.class
+LecturerActivities\LecturerViewTimetableSchedule.class
 AdminActivities\CommonClasses\UpdateSubjectStatus.class
 AdminActivities\AdminViewStudent$10.class
 LoginFrames\LecturerForgotPassword$3.class
@@ -136,6 +138,7 @@ StudentActivities\StudentViewExamination$1.class
 LoginFrames\AdminLogin.class
 AdminActivities\AdminDashboard$3.class
 LecturerActivities\LecturerViewTimetable$5.class
+LecturerActivities\LecturerViewTimetableSchedule$2.class
 AdminActivities\AdminViewTimetable$3.class
 LoginFrames\AdminForgotPassword$8.class
 LecturerActivities\LecturerViewSettings.class
@@ -152,6 +155,7 @@ LoginFrames\AdminLogin$1.class
 AdminActivities\CommonClasses\LecturerDataDeleter.class
 LecturerActivities\CommonClasses\LecturerRetriever.class
 StudentActivities\StudentViewCourseContent.class
+LecturerActivities\LecturerViewTimetableSchedule$3.class
 LecturerActivities\LecturerViewCourseContent$1.class
 LoginFrames\LecturerLogin.class
 LecturerActivities\LecturerViewSettings$2.class
@@ -213,6 +217,7 @@ AdminActivities\CommonClasses\StudentRegistration.class
 LoginFrames\Home$1.class
 LecturerActivities\LecturerViewCourseContent$3.class
 LecturerActivities\LecturerViewTimetable$3.class
+LecturerActivities\LecturerViewTimetableSchedule$1.class
 StudentActivities\CommonClasses\StudentCourseContentLoader.class
 LoginFrames\LecturerForgotPassword$6.class
 LoginFrames\LecturerForgotPassword$10.class

@@ -225,7 +225,7 @@ public class LecturerViewTimetable extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Calisto MT", 1, 24)); // NOI18N
-        jLabel4.setText("Course Content");
+        jLabel4.setText("Timetable");
 
         btn_Menu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_Menu.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -424,10 +424,6 @@ public class LecturerViewTimetable extends javax.swing.JFrame {
                         .addComponent(lbl_lecturerID)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(277, 277, 277)
-                        .addComponent(jLabel4)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -436,7 +432,11 @@ public class LecturerViewTimetable extends javax.swing.JFrame {
                                 .addComponent(btn_Verify1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(77, 77, 77))))
+                        .addGap(77, 77, 77))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(316, 316, 316)
+                        .addComponent(jLabel4)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -503,6 +503,9 @@ public class LecturerViewTimetable extends javax.swing.JFrame {
 
     private void btn_Verify2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Verify2ActionPerformed
         // TODO add your handling code here:
+        LecturerViewTimetableSchedule lecturerViewTimetableSchedule = new LecturerViewTimetableSchedule(lecturerID);
+        lecturerViewTimetableSchedule.setVisible(true);
+        this.hide();
     }//GEN-LAST:event_btn_Verify2ActionPerformed
 
     private void comboBox_CourseIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBox_CourseIDActionPerformed
