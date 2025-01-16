@@ -239,7 +239,7 @@ public class LecturerViewCourseContent extends javax.swing.JFrame {
         btn_updateSubjectStatus.setBackground(new java.awt.Color(0, 0, 0));
         btn_updateSubjectStatus.setFont(new java.awt.Font("Calisto MT", 1, 15)); // NOI18N
         btn_updateSubjectStatus.setForeground(new java.awt.Color(255, 255, 255));
-        btn_updateSubjectStatus.setText("Schedule");
+        btn_updateSubjectStatus.setText("Update");
         btn_updateSubjectStatus.setAlignmentY(0.0F);
         btn_updateSubjectStatus.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_updateSubjectStatus.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);

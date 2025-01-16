@@ -37,6 +37,9 @@ public class LecturerViewMessages extends javax.swing.JFrame {
 
         String MenuColored = "src\\main\\java\\StudentActivities\\Icons\\MenuColored.png";
         btn_Menu.setIcon(ImageResizer.resizeImage(MenuColored, 35, 35));
+        
+        String AdminBanner = "src\\main\\java\\LoginFrames\\Images\\Error.png";
+        lbl_lecturerLoginImage.setIcon(ImageResizer.resizeImage(AdminBanner, 400, 400));
 
         drawer = Drawer.newDrawer(this)
                 .headerHeight(100)

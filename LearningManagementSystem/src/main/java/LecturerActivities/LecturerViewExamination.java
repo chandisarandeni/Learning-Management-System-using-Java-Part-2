@@ -621,12 +621,14 @@ public class LecturerViewExamination extends javax.swing.JFrame {
                 int rowsAffected = preparedStatement.executeUpdate();
                 if (rowsAffected > 0) {
                     JOptionPane.showMessageDialog(null, "Examination data submitted successfully.");
+                    comboBox_studentID.setSelectedItem(null);
                 } else {
                     JOptionPane.showMessageDialog(null, "Failed to submit examination data.");
+                    comboBox_studentID.setSelectedItem(null);
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Error occurred while submitting data.");
+                JOptionPane.showMessageDialog(null, "The data is already submitted");
             }
         });
 

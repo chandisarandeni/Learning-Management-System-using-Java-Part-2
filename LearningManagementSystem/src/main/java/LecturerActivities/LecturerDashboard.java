@@ -4,6 +4,10 @@
  */
 package LecturerActivities;
 
+import AdminActivities.CommonClasses.LecturerCount;
+import AdminActivities.CommonClasses.StudentCount;
+import AdminActivities.CommonClasses.TodayLecturesLoader;
+import AdminActivities.CommonClasses.TotalCourseCounter;
 import CommonClasses.ImageResizer;
 import LoginFrames.Home;
 import StudentActivities.StudentDashboard;
@@ -55,6 +59,22 @@ public class LecturerDashboard extends javax.swing.JFrame {
                 .build();
         
         lbl_lecturerID.setVisible(false);
+        
+        
+        //Show Student Count on Admin Dashboard
+        StudentCount studentCount = new StudentCount();
+        int totalStudents = studentCount.getTotalStudents(); // Get the total student count
+        lbl_totalStudentCount.setText("" + totalStudents); // Display the count on the label
+
+        //Show Lecturer Count on Dashboard
+        LecturerCount lecturerCount = new LecturerCount();
+        int totalLecturers = lecturerCount.getTotalLecturers();
+        lbl_totalLecturerCount.setText("" + totalLecturers);
+
+        int totalCourses = TotalCourseCounter.getTotalCourses();
+        lbl_totalCourseCount.setText(String.valueOf(totalCourses)); // Update the label
+        
+        TodayLecturesLoader.loadTodayLectures(jTable1);
     }
 
     private DrawerItem createDrawerItem(String title) {

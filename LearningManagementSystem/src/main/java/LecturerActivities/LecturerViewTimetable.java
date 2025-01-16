@@ -480,8 +480,10 @@ public class LecturerViewTimetable extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Please fill in all the fields.");
                 return;
             }
-
             ScheduleAdder.addSchedule(courseID, subjectName, lectureDate, startTime, endTime, hallNumber);
+            LecturerViewTimetable lecturerViewTimetable = new LecturerViewTimetable(lecturerID);
+            lecturerViewTimetable.setVisible(true);
+            this.hide();
         });
 
     }//GEN-LAST:event_btn_AddScheduleActionPerformed
