@@ -331,7 +331,7 @@ public class LecturerLogin extends javax.swing.JFrame {
 
     private void btn_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LoginActionPerformed
         // Get input values from the text fields
-        String lecturerEmail = txt_lecturerUsername.getText();
+        String lecturerEmail = txt_lecturerUsername.getText().toLowerCase();
         String lecturerPassword = txt_lecturerPassword.getText();
 
 // Database connection details

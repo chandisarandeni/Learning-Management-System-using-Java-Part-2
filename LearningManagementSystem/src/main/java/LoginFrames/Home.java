@@ -75,8 +75,6 @@ public class Home extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(885, 525));
         setMinimumSize(new java.awt.Dimension(885, 525));
 
-        lbl_HomeImage.setIcon(new javax.swing.ImageIcon("C:\\Users\\chand\\OneDrive\\Desktop\\GitHub Clones\\Learning-Management-System-using-Java\\LearningManagementSystem\\src\\main\\java\\LoginFrames\\Images\\HomeBanner.png")); // NOI18N
-
         jLabel1.setFont(new java.awt.Font("Cooper Black", 1, 36)); // NOI18N
         jLabel1.setText("Welcome to");
 
@@ -303,7 +301,7 @@ public class Home extends javax.swing.JFrame {
 
     private void btn_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LoginActionPerformed
         // TODO add your handling code here:
-        String studentID = StudentIDRetriever.getStudentIDByEmail(txt_studentUsername.getText());
+        String studentID = StudentIDRetriever.getStudentIDByEmail(txt_studentUsername.getText().toLowerCase());
 
         if (studentID != null) {
             System.out.println("Student ID: " + studentID);

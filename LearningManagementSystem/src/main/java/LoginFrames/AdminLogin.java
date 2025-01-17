@@ -290,7 +290,7 @@ public class AdminLogin extends javax.swing.JFrame {
 
     private void btn_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LoginActionPerformed
         // TODO add your handling code here:
-        String adminUsername = txt_adminUsername.getText();
+        String adminUsername = txt_adminUsername.getText().toLowerCase();
         String adminPassword = txt_adminPassword.getText();
 
         String connectionString = "jdbc:mysql://localhost:3306/LMS";

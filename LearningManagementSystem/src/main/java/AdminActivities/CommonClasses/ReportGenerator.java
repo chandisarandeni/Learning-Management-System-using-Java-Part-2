@@ -1,13 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package AdminActivities.CommonClasses;
 
-/**
- *
- * @author chand
- */
+import AdminActivities.*;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.JasperViewer;
 
@@ -18,7 +11,14 @@ import java.util.Map;
 
 public class ReportGenerator {
 
-    public static void generateReport(String studentID) {
+    private String studentID;
+
+    // Constructor to initialize studentID
+    public ReportGenerator(String studentID) {
+        this.studentID = studentID;
+    }
+
+    public void generateReport() {
         try {
             // Load the MySQL JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -28,14 +28,14 @@ public class ReportGenerator {
                     "jdbc:mysql://localhost:3306/LMS?zeroDateTimeBehavior=CONVERT_TO_NULL", "root", "")) {
 
                 // Path to the .jrxml report file
-                String reportPath = "C:\\Users\\chand\\OneDrive\\Desktop\\GitHub Clones\\Learning-Management-System-using-Java-Part-2\\LearningManagementSystem\\src\\main\\java\\AdminActivities\\Reports\\ResultSheet.jrxml";
+                String reportPath = "C:\\Users\\chand\\OneDrive\\Desktop\\GitHub Clones\\Learning-Management-System-using-Java-Part-2\\LearningManagementSystem\\src\\main\\java\\AdminActivities\\Reports\\StudentResultTemp.jrxml";
 
                 // Compile the report file
                 JasperReport jasperReport = JasperCompileManager.compileReport(reportPath);
 
                 // Create a parameter map for the report
                 Map<String, Object> parameters = new HashMap<>();
-                parameters.put("studentID", studentID);  // Ensure studentID is passed as a String
+                parameters.put("studentID", studentID);  // Use the class-level studentID
 
                 // Fill the report with data from the database
                 JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, conn);
@@ -54,7 +54,6 @@ public class ReportGenerator {
             JOptionPane.showMessageDialog(null, "MySQL JDBC Driver not found: " + e.getMessage(), "Driver Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         } catch (Exception e) {
-            // Handle any other errors
             JOptionPane.showMessageDialog(null, "An unexpected error occurred: " + e.getMessage(), "Unexpected Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }

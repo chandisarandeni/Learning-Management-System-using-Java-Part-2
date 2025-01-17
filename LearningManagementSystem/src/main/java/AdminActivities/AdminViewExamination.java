@@ -546,7 +546,9 @@ public class AdminViewExamination extends javax.swing.JFrame {
         // Ensure the studentID is not empty or invalid
         if (studentID != null && !studentID.trim().isEmpty()) {
             // Call the generateReport method from ReportGenerator class
-            ReportGenerator.generateReport(studentID);
+            ReportGenerator reportGenerator = new ReportGenerator(studentID);
+            //ReportGenerator.generateReport(studentID);
+            reportGenerator.generateReport();
         } else {
             // Show an error message if the studentID is not valid
             JOptionPane.showMessageDialog(null, "Please enter a valid student ID.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
